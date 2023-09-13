@@ -14,6 +14,5 @@ export class User {
         this.street = obj ? obj.street : '';
         this.zipCode = obj ? obj.zipCode : '';
         this.city = obj ? obj.city : '';
-
     }
 }

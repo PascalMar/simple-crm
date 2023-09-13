@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from 'src/models/user.class';
+import { Firestore, collection, doc, collectionData, addDoc } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -8,18 +10,52 @@ import { User } from 'src/models/user.class';
 })
 export class DialogAddUserComponent {
   user = new User();
-  birthDate!: Date;
+  // birthDate!: Date;
 
-  constructor() {}
+  items$;
+  items;
 
-  ngOnInit(): void {
+  firestore: Firestore = inject(Firestore);
 
+  constructor() {
+    this.items$ = collectionData(this.getUserRef())
+    this.items = this.items$.subscribe((list) => {
+      list.forEach(element => {
+        console.log(element);
+      });
+    })
+    this.items.unsubscribe();
   }
 
-  saveUser() {
-    this.user.birthDate = this.birthDate.getTime();
-    console.log('Current user is', this.user);
-    
+
+  addUser() {
+    const userData = {
+      firstName: this.user.firstName,
+      lastName: this.user.lastName,
+      street: this.user.street,
+      birthDate: this.user.birthDate,      
+      zipCode: this.user.zipCode,
+      city: this.user.city,
+      
+    };
+    this.saveUser(userData);
   }
 
+  async saveUser(item: {} = {}) {
+    await addDoc(this.getUserRef(), item).catch(
+      (err) => { console.error(err) }
+    ).then(
+      (docRef) => { console.log("Document written with ID: ", docRef?.id); }
+    )
+  }
+
+  getUserRef() {
+    return collection(this.firestore, 'user');
+  }
+
+
+
+  getCollection() {
+    return collection(this.firestore, 'items');
+  }
 }
