@@ -10,7 +10,7 @@ import { Firestore, collection, doc, collectionData, addDoc } from '@angular/fir
 })
 export class DialogAddUserComponent {
   user = new User();
-  // birthDate!: Date;
+  birthDate!: Date;
 
   items$;
   items;
@@ -29,14 +29,15 @@ export class DialogAddUserComponent {
 
 
   addUser() {
+    const birthDateTimestamp = this.birthDate.getTime();
     const userData = {
       firstName: this.user.firstName,
       lastName: this.user.lastName,
       street: this.user.street,
-      birthDate: this.user.birthDate,      
+      birthDate: birthDateTimestamp,
       zipCode: this.user.zipCode,
       city: this.user.city,
-      
+
     };
     this.saveUser(userData);
   }
