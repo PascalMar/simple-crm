@@ -17,10 +17,12 @@ export class DialogAddUserComponent {
 
   firstName = "";
   lastName = "";
+  email = "";
   birthDate = "";
   street = "";
   zipCode = "";
   city = "";
+ 
 
   constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, public userService: UserListService) { }
 
@@ -28,11 +30,11 @@ export class DialogAddUserComponent {
     let user: User = {
       firstName: this.firstName,
       lastName: this.lastName,
+      email: this.email,
       birthDate: new Date(this.birthDate).getTime(),
       street: this.street,
       zipCode: parseInt(this.zipCode, 10),
       city: this.city,
-
     }
     this.userService.addUser(user);
     this.dialogRef.close();

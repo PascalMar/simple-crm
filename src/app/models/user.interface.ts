@@ -1,8 +1,10 @@
 export interface User {
     firstName: string;
     lastName: string;
+    email: string;
     birthDate: number;
     street: string;
     zipCode: number;
-    city: string;    
+    city: string;   
+    id?: string; 
 }

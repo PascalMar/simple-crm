@@ -30,9 +30,9 @@ export class UserListService {
 
     setNoteObject(obj: any, id: string): User {
         return {
-            // id: id,
             firstName: obj.firstName || "",
             lastName: obj.lastName || "",
+            email: obj.email || "",
             birthDate: obj.birthDate || "",
             street: obj.street || "",
             zipCode: obj.zipCode || "",
@@ -45,23 +45,21 @@ export class UserListService {
             this.user = [];
             list.forEach(element => {
                 this.user.push(this.setNoteObject(element.data(), element.id));
+                console.log(element.id);
             });
         });
     }
 
     async addUser(item: {}) {
         await addDoc(this.getUserRef(), item).catch(
-          (err) => {
-            console.error(err)
-          }
+            (err) => {
+                console.error(err)
+            }
         ).then(
-          (docRef) => {
-            docRef
-          }
+            (docRef) => {
+                docRef
+            }
         )
-      }
-
-
-
+    }
 }
 
