@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
-import { User } from 'src/models/user.class';
+import { User } from 'src/app/models/user.interface';
+import { UserListService } from '../firebase-services/user-list.service';
 
 @Component({
   selector: 'app-user',
@@ -9,12 +10,21 @@ import { User } from 'src/models/user.class';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  user = new User();
- 
 
-  constructor(public dialog: MatDialog) { }
+
+  userList: User[] = [];
+
+
+
+
+  constructor(public dialog: MatDialog, public userService: UserListService) { }
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent)
+  }
+
+  
+  getList() {
+    return this.userService.user;
   }
 }

@@ -8,7 +8,7 @@
 
 .sidenav {
     width: 300px;
-    
+
 }
 
 .logo-container {
@@ -20,7 +20,8 @@
     align-items: center;
 }
 
-mat-toolbar, mat-toolbar-row {
+mat-toolbar,
+mat-toolbar-row {
     min-height: 56px;
     height: 56px;
 }
@@ -43,12 +44,19 @@ mat-toolbar, mat-toolbar-row {
         }
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.04); ;
+            background-color: rgba(0, 0, 0, 0.04);
+            ;
         }
     }
 }
 
 .router-container {
-  padding-left: 56px;
-  padding-top: 16px; 
+    padding-left: 56px;
+    padding-right: 56px;
+    padding-top: 16px;
+}
+
+.logo {
+    max-width: 100%;
+    height: 48px;
 }

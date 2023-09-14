@@ -1,6 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { User } from 'src/models/user.class';
-import { Firestore, collection, doc, collectionData, addDoc } from '@angular/fire/firestore';
+import { Component, Input } from '@angular/core';
+import { User } from 'src/app/models/user.interface';
+import { MatDialogRef } from '@angular/material/dialog';
+import { UserListService } from '../firebase-services/user-list.service';
+
 
 
 @Component({
@@ -9,54 +11,32 @@ import { Firestore, collection, doc, collectionData, addDoc } from '@angular/fir
   styleUrls: ['./dialog-add-user.component.scss']
 })
 export class DialogAddUserComponent {
-  user = new User();
-  birthDate!: Date;
+  @Input() user!: User;
 
-  items$;
-  items;
+  loading = false;
 
-  firestore: Firestore = inject(Firestore);
+  firstName = "";
+  lastName = "";
+  birthDate = "";
+  street = "";
+  zipCode = "";
+  city = "";
 
-  constructor() {
-    this.items$ = collectionData(this.getUserRef())
-    this.items = this.items$.subscribe((list) => {
-      list.forEach(element => {
-        console.log(element);
-      });
-    })
-    this.items.unsubscribe();
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, public userService: UserListService) { }
+
+  addNote() {
+    let user: User = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      birthDate: new Date(this.birthDate).getTime(),
+      street: this.street,
+      zipCode: parseInt(this.zipCode, 10),
+      city: this.city,
+
+    }
+    this.userService.addUser(user);
+    this.dialogRef.close();
   }
 
 
-  addUser() {
-    const birthDateTimestamp = this.birthDate.getTime();
-    const userData = {
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      street: this.user.street,
-      birthDate: birthDateTimestamp,
-      zipCode: this.user.zipCode,
-      city: this.user.city,
-
-    };
-    this.saveUser(userData);
-  }
-
-  async saveUser(item: {} = {}) {
-    await addDoc(this.getUserRef(), item).catch(
-      (err) => { console.error(err) }
-    ).then(
-      (docRef) => { console.log("Document written with ID: ", docRef?.id); }
-    )
-  }
-
-  getUserRef() {
-    return collection(this.firestore, 'user');
-  }
-
-
-
-  getCollection() {
-    return collection(this.firestore, 'items');
-  }
 }
