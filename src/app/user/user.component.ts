@@ -18,8 +18,8 @@ export class UserComponent {
 
 
   constructor(public dialog: MatDialog, public userService: UserListService) {
-    
-   }
+
+  }
 
 
 
@@ -29,6 +29,6 @@ export class UserComponent {
 
 
   getList() {
-    return this.userService.user;
+    return this.userService.user;    
   }
 }

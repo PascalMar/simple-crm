@@ -6,5 +6,5 @@ export interface User {
     street: string;
     zipCode: number;
     city: string;   
-    id?: string; 
+    id: string; 
 }

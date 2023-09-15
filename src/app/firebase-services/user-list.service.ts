@@ -37,6 +37,7 @@ export class UserListService {
             street: obj.street || "",
             zipCode: obj.zipCode || "",
             city: obj.city || "",
+            id: id || "",
         }
     }
 
