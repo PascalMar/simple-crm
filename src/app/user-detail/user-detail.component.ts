@@ -35,7 +35,7 @@ export class UserDetailComponent implements AfterViewInit {
     try {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        console.log(docSnap.data());
+        // console.log(docSnap.data());
         return docSnap.data();
       } else {
         return;
