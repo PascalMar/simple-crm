@@ -26,12 +26,13 @@ import {MatCardModule} from '@angular/material/card';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { authGuard } from './shared/auth.guard';
+import { AuthGuard } from './shared/auth.guard';
 import { AuthService } from './shared/auth.service';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { DefaultComponent } from './layout/default/default.component';
 import { LogComponent } from './layout/log/log.component';
+import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 
 
 
@@ -47,7 +48,8 @@ import { LogComponent } from './layout/log/log.component';
     LoginComponent,
     RegisterComponent,
     DefaultComponent,
-    LogComponent
+    LogComponent,
+    VerifyMailComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,7 @@ import { LogComponent } from './layout/log/log.component';
     MatProgressBarModule,
     MatCardModule
   ],
-  providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase } ],
+  providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

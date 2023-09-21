@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogComponent } from './layout/log/log.component';
 import { DefaultComponent } from './layout/default/default.component';
+import { AuthGuard } from './shared/auth.guard';
+import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 
 
 const routes: Routes = [
@@ -22,11 +24,12 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
-    // canActivate:[AuthGuard],
+    canActivate:[AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'user', component: UserComponent },
+      {path: 'verify-email', component : VerifyMailComponent},
       { path: 'user/:id', component: UserDetailComponent },
     ]
   },
