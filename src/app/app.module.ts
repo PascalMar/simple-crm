@@ -30,6 +30,8 @@ import { authGuard } from './shared/auth.guard';
 import { AuthService } from './shared/auth.service';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { DefaultComponent } from './layout/default/default.component';
+import { LogComponent } from './layout/log/log.component';
 
 
 
@@ -43,7 +45,9 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     DialogAddUserComponent,
     UserDetailComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DefaultComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,

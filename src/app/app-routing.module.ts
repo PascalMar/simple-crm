@@ -5,15 +5,32 @@ import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { LogComponent } from './layout/log/log.component';
+import { DefaultComponent } from './layout/default/default.component';
 
 
 const routes: Routes = [
-  // { path: '', component: DashboardComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'user', component: UserComponent },
-  { path: '', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-];
+  {
+    path: '',
+    component: LogComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+    ]
+  },
+  {
+    path: '',
+    component: DefaultComponent,
+    // canActivate:[AuthGuard],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'user', component: UserComponent },
+      { path: 'user/:id', component: UserDetailComponent },
+    ]
+  },
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
