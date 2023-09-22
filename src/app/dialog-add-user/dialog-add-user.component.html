@@ -1,57 +1,48 @@
-<div class="dialog-container">
+<form [formGroup]="customerForm">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-
-    <h1 mat-dialog-title>Add user</h1>
+    <h1 mat-dialog-title>{{title}}</h1>
     <div mat-dialog-content>
         <div>
             <mat-form-field class="mr-16">
                 <mat-label>First Name</mat-label>
-                <input [disabled]="loading" [(ngModel)]="firstName" matInput>
+                <input formControlName="FirstName" matInput>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Last Name</mat-label>
-                <input [disabled]="loading" [(ngModel)]="lastName" matInput>
-            </mat-form-field>
-        </div>
-
-        <div>
-            <mat-form-field class="full-width">
-                <mat-label>E-Mail</mat-label>
-                <input [disabled]="loading" [(ngModel)]="email" matInput>
-            </mat-form-field>
-        </div>
-
-        <div>
-            <mat-form-field class="full-width">
-                <mat-label>Birth Date</mat-label>
-                <input [disabled]="loading" [(ngModel)]="birthDate" matInput matInput [matDatepicker]="picker1">
-                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-            </mat-form-field>
-        </div>
-
-        <div>
-            <mat-form-field class="full-width">
-                <mat-label>Street</mat-label>
-                <input [disabled]="loading" [(ngModel)]="street" matInput>
-            </mat-form-field>
-        </div>
-
-        <div>
-            <mat-form-field class="mr-16">
-                <mat-label>Zip code</mat-label>
-                <input [disabled]="loading" matInput [(ngModel)]="zipCode">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>City</mat-label>
-                <input [disabled]="loading" [(ngModel)]="city" matInput>
+                <input formControlName="LastName" matInput>
             </mat-form-field>
         </div>
     </div>
+    <div>
+        <mat-form-field class="full-width">
+            <mat-label>E-Mail</mat-label>
+            <input formControlName="email" matInput>
+        </mat-form-field>
+    </div>
 
+    <div>
+        <mat-form-field class="mr-16">
+            <mat-label>Street</mat-label>
+            <input formControlName="Country" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Zip Code</mat-label>
+            <input formControlName="ZipCode" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="mr-16">
+            <mat-label>City</mat-label>
+            <input formControlName="City" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input formControlName="Country" matInput>
+        </mat-form-field>
+    </div>
     <div mat-dialog-actions>
-        <button [disabled]="loading" (click)="dialogRef.close()" mat-button>Cancel</button>
-        <button [disabled]="loading" (click)="addUser()" mat-button cdkFocusInitial>Save</button>
+        <button [disabled]="loading" (click)="dialogRef.close()" mat-raised-button>Cancel</button>
+        <button [disabled]="loading || customerForm.invalid" (click)="addCustomer()" mat-raised-button color="primary"
+            cdkFocusInitial>Save</button>
     </div>
-
-</div>
+</form>

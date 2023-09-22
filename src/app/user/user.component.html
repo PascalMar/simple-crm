@@ -1,22 +1,59 @@
-<mat-card>
-  <mat-card-content>
-    <table class="user-table">
-      <tr>
-        <th>Name</th>
-        <th>E-Mail</th>
-        <th>City</th>
-      </tr>
-      <tr *ngFor="let user of getList()" [routerLink]="['/user/' + user.id]">
-        <td>{{user.firstName}} {{user.lastName}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.city}}</td>
-      </tr>
-    
-    </table>
-  </mat-card-content>
-</mat-card>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12">
+          <mat-card>
+              <mat-card-content>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search...">
+                      </div>
+                  </div>
+                  <table class="table table-hover table-responsive">
+                      <thead>
+                          <tr>
+                              <th scope="col">First Name</th>
+                              <th scope="col">Last Name</th>
+                              <th scope="col">E-Mail</th>
+                              <th scope="col">Street</th>
+                              <th scope="col">Zip Code</th>
+                              <th scope="col">City</th>
+                              <th scope="col">Country</th>
+                              
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let item of customerCollectiondata">
+                              <td>{{item.FirstName}}</td>
+                              <td>{{item.LastName}}</td>
+                              <td>{{item.email}}</td>
+                              <td>{{item.Street}}</td>
+                              <td>{{item.ZipCode}}</td>
+                              <td>{{item.City}}</td>
+                              <td>{{item.Country}}</td>
+                              <td>
+                                  <div style="display: flex;gap: 8px;">
+                                      <button mat-raised-button class="btn btn-primary"
+                                          (click)="delete(item.id)">Delete</button>
+                                      <button mat-raised-button color="primary" class="btn btn-primary"
+                                          (click)="openDialog(item)">Edit</button>
 
+                                  </div>
+                              </td>
+                          </tr>
 
-<button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add a new User">
-  <mat-icon>add</mat-icon>
-</button>
+                      </tbody>
+                  </table>
+
+              </mat-card-content>
+          </mat-card>
+      </div>
+  </div>
+  <div class="row mt-5">
+      <div class="col-md-12">
+          <button (click)="openDialog('')" class="add-user-btn" mat-fab color="primary"
+              matTooltip="Add a new Employee">
+              <mat-icon>add</mat-icon>
+          </button>
+      </div>
+  </div>
+</div>
