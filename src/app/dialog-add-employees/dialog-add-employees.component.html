@@ -1,6 +1,6 @@
 <form [formGroup]="employeesForm">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-    <h1 mat-dialog-title>Add employees</h1>
+    <h1 mat-dialog-title>{{title}}</h1>
     <div mat-dialog-content>
         <div>
             <mat-form-field class="mr-16">
