@@ -1,1 +1,48 @@
-<p>dialog-add-employees works!</p>
+<form [formGroup]="employeesForm">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <h1 mat-dialog-title>Add employees</h1>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="mr-16">
+                <mat-label>Name</mat-label>
+                <input formControlName="Name" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Designation</mat-label>
+                <input formControlName="Designation" matInput>
+            </mat-form-field>
+        </div>
+    </div>
+    <div>
+        <mat-form-field class="full-width">
+            <mat-label>E-Mail</mat-label>
+            <input formControlName="email" matInput>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="mr-16">
+            <mat-label>Country</mat-label>
+            <input formControlName="Country" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Hire Date</mat-label>
+            <input formControlName="Hiredate" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="mr-16">
+            <mat-label>Report To</mat-label>
+            <input formControlName="Reportto" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>City</mat-label>
+            <input formControlName="City" matInput>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="loading" (click)="dialogRef.close()" mat-raised-button>Cancel</button>
+        <button [disabled]="loading || employeesForm.invalid" (click)="addEmployees()" mat-raised-button color="primary"
+            cdkFocusInitial>Save</button>
+    </div>
+</form>
