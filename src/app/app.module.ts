@@ -33,6 +33,9 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { DefaultComponent } from './layout/default/default.component';
 import { LogComponent } from './layout/log/log.component';
 import { VerifyMailComponent } from './verify-mail/verify-mail.component';
+import { EmployService } from './shared/employ.service';
+import { DialogAddEmployeesComponent } from './dialog-add-employees/dialog-add-employees.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 
 
@@ -49,7 +52,9 @@ import { VerifyMailComponent } from './verify-mail/verify-mail.component';
     RegisterComponent,
     DefaultComponent,
     LogComponent,
-    VerifyMailComponent
+    VerifyMailComponent,
+    DialogAddEmployeesComponent,
+    EmployeesComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,7 @@ import { VerifyMailComponent } from './verify-mail/verify-mail.component';
     MatProgressBarModule,
     MatCardModule
   ],
-  providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, AuthGuard ],
+  providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, AuthGuard, EmployService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

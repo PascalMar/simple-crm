@@ -9,6 +9,7 @@ import { LogComponent } from './layout/log/log.component';
 import { DefaultComponent } from './layout/default/default.component';
 import { AuthGuard } from './shared/auth.guard';
 import { VerifyMailComponent } from './verify-mail/verify-mail.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'user', component: UserComponent },
       {path: 'verify-email', component : VerifyMailComponent},
       { path: 'user/:id', component: UserDetailComponent },
+      { path: 'employees', component: EmployeesComponent },
     ]
   },
 ]
