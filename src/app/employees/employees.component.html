@@ -9,7 +9,6 @@
                         </div>
                     </div>
                     <table class="table table-hover table-responsive">
-
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
@@ -23,7 +22,7 @@
                             </tr>
                         </thead>
                         <tbody *ngIf="filteredData.length > 0; else noRecordsFound">
-                            <tr *ngFor="let item of filteredData">
+                            <tr *ngFor="let item of filteredData | paginate: { itemsPerPage: 10, currentPage: p}">
                                 <td>{{item.Name}}</td>
                                 <td>{{item.Designation}}</td>
                                 <td>{{item.email}}</td>
@@ -37,11 +36,11 @@
                                             (click)="delete(item.id)">Delete</button>
                                         <button mat-raised-button color="primary" class="btn btn-primary"
                                             (click)="openDialog(item)">Edit</button>
-
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
                     </table>
                     <ng-template #noRecordsFound>
                         <p>No records found.</p>

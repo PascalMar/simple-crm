@@ -15,6 +15,7 @@ export class EmployeesComponent implements OnInit {
   empCollectiondata: any = [];
   searchQuery: string = '';
   filteredData: any = [];
+  p: number = 1;
 
 
   constructor(public dialog: MatDialog, private empService: EmployService) { }
