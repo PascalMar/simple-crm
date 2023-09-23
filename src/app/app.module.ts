@@ -36,6 +36,7 @@ import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 import { EmployService } from './shared/employ.service';
 import { DialogAddEmployeesComponent } from './dialog-add-employees/dialog-add-employees.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -76,7 +77,8 @@ import { EmployeesComponent } from './employees/employees.component';
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     MatProgressBarModule,
-    MatCardModule
+    MatCardModule,
+    NgxPaginationModule
   ],
   providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, AuthGuard, EmployService ],
   bootstrap: [AppComponent]

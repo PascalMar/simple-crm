@@ -9,6 +9,7 @@
                         </div>
                     </div>
                     <table class="table table-hover table-responsive">
+
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
@@ -21,8 +22,8 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let item of empCollectiondata">
+                        <tbody *ngIf="filteredData.length > 0; else noRecordsFound">
+                            <tr *ngFor="let item of filteredData">
                                 <td>{{item.Name}}</td>
                                 <td>{{item.Designation}}</td>
                                 <td>{{item.email}}</td>
@@ -40,10 +41,11 @@
                                     </div>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
-
+                    <ng-template #noRecordsFound>
+                        <p>No records found.</p>
+                    </ng-template>
                 </mat-card-content>
             </mat-card>
         </div>

@@ -13,7 +13,7 @@ export class EmployeesComponent implements OnInit {
 
   allEmp: any;
   empCollectiondata: any = [];
-  searchQuery:string = '';
+  searchQuery: string = '';
   filteredData: any = [];
 
 
@@ -42,6 +42,7 @@ export class EmployeesComponent implements OnInit {
     const snapshot = await this.empService.getEmployees();
     this.updateEmployeeCollection(snapshot);
     console.log(this.empCollectiondata, ' data');
+    this.filteredData = this.empCollectiondata;
   }
 
   updateEmployeeCollection(snapshot: QuerySnapshot<DocumentData>) {
@@ -52,23 +53,27 @@ export class EmployeesComponent implements OnInit {
   }
 
   updateFilteredData() {
-    this.filteredData = this.empCollectiondata.filter((item:any) => {
-      // Customize this logic based on your search requirements
-      return (
-        item.Name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.Designation.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.Country.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.City.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.Hiredate.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.Reportto.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    });
+    if (this.searchQuery.trim() === '') {
+      this.filteredData = [...this.empCollectiondata]; // Copy all data when search query is empty
+    } else {
+      this.filteredData = this.empCollectiondata.filter((item: any) => {
+        // Customize this logic based on your search requirements
+        return (
+          item.Name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.Designation.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.Country.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.City.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.Hiredate.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.Reportto.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      });
+    }
   }
 
-  onSearch () {
+  onSearch() {
     this.updateFilteredData();
-    console.log(this.filteredData ,' filter data');
+    console.log(this.filteredData, ' filter data');
   }
 
 
