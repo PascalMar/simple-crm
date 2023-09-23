@@ -24,7 +24,14 @@ mat-toolbar,
 mat-toolbar-row {
     min-height: 56px;
     height: 56px;
+
+    mat-form-field {
+        position: absolute;
+        right: 0;
+    }
 }
+
+
 
 .menu-items {
     list-style-type: none;

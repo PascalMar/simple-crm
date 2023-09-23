@@ -4,7 +4,6 @@ import { EmployService } from 'src/app/shared/employ.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
-
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -14,45 +13,38 @@ export class UserProfileComponent implements OnInit {
   selectedImage: any;
   uid: any;
 
-  userProfileForm !: FormGroup;
+  userProfileForm !: FormGroup ;
   profiledata: any;
-
-
-  constructor(private fb: FormBuilder,
+ 
+   
+  constructor(private fb :FormBuilder ,
     private storage: AngularFireStorage,
     private afAuth: AngularFireAuth,
-    private empService: EmployService) {
-    this.userProfileForm = this.fb.group({
-      Name: ['', Validators.required],
-      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
-      Country: [''],
-    });
-  }
+    private empService : EmployService) {
+      this.userProfileForm = this.fb.group({
+        Name: ['', Validators.required],
+        email: [ { value: '', disabled: true }, [Validators.required, Validators.email]],
+        Country: [''],
+      });
+    }
+  
+  
 
   ngOnInit(): void {
+      
     this.getCurrentUserUid();
+
+    
   }
 
-  getCurrentUserUid() {
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.uid = user.uid;
-        this.getUserById(this.uid);
-        console.log('Current User UID: ', this.uid);
-
-      } else {
-        // User is not logged in
-        console.log('User is not logged in');
-      }
-    });
-  }
-
+   
   async getUserById(uid: string) {
     try {
-      this.profiledata = await this.empService.getUserById(uid);
-      if (this.profiledata) {
+     
+      this.profiledata  = await this.empService.getUserById(uid);
+      if (this.profiledata ) {
         // Data exists, you can use it here
-        console.log('Employee data:', this.profiledata);
+        console.log('Employee data:', this.profiledata );
         this.userProfileForm.patchValue(this.profiledata);
       } else {
         // Handle the case where the document does not exist
@@ -64,6 +56,21 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  getCurrentUserUid() {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.uid = user.uid;
+        this.getUserById(this.uid);
+        console.log('Current User UID: ', this.uid);
+       
+      } else {
+        // User is not logged in
+        console.log('User is not logged in');
+      }
+    });
+  }
+  
+
   onFileSelected(event: any) {
     // Get the selected image file
     this.selectedImage = event.target.files[0];
@@ -72,7 +79,7 @@ export class UserProfileComponent implements OnInit {
   updateProfile(){
     if(this.userProfileForm.valid){
         // Upload the selected image to a storage service  
-    const filePath = `users_images/${this.selectedImage?.name}`;
+    const filePath = `users_images/${this.selectedImage.name}`;
     const fileRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, this.selectedImage);
 
@@ -101,6 +108,5 @@ export class UserProfileComponent implements OnInit {
 
     }
   }
-
 
 }

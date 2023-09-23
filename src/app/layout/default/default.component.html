@@ -8,12 +8,7 @@
             <li routerLink="/dashboard"><mat-icon>fact_check</mat-icon>Dashboard</li>
             <li routerLink="/user"><mat-icon>perm_identity</mat-icon>User</li>
             <li routerLink="/employees"><mat-icon>perm_identity</mat-icon>Employees</li>
-            <li routerLink="/profile-setting">
-                <mat-icon>perm_identity</mat-icon>Profile Setting
-            </li>
-            <li (click)="logout()">
-                <mat-icon>perm_identity</mat-icon> Logout
-            </li>
+
         </ul>
     </mat-drawer>
 
@@ -23,6 +18,19 @@
                 <mat-icon class="menu-icon" mat-button (click)="drawer.toggle()">menu</mat-icon>
                 <span>Simple CRM
                 </span>
+                <mat-form-field>
+                    <mat-label>User</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            <li routerLink="/profile-setting">
+                                <mat-icon>perm_identity</mat-icon>Profile Setting
+                            </li>
+                            <li (click)="logout()">
+                                <mat-icon>perm_identity</mat-icon> Logout
+                            </li>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </mat-toolbar-row>
         </mat-toolbar>
         <div class="router-container">
