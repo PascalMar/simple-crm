@@ -8,6 +8,12 @@
             <li routerLink="/dashboard"><mat-icon>fact_check</mat-icon>Dashboard</li>
             <li routerLink="/user"><mat-icon>perm_identity</mat-icon>User</li>
             <li routerLink="/employees"><mat-icon>perm_identity</mat-icon>Employees</li>
+            <li routerLink="/profile-setting">
+                <mat-icon>perm_identity</mat-icon>Profile Setting
+            </li>
+            <li (click)="logout()">
+                <mat-icon>perm_identity</mat-icon> Logout
+            </li>
         </ul>
     </mat-drawer>
 
