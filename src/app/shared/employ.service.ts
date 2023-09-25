@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, DocumentData, CollectionReference, onSnapshot, QuerySnapshot, getDoc } from 'firebase/firestore'
 import { Subject } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +10,13 @@ export class EmployService {
   db: Firestore;
 
   empCol: CollectionReference<DocumentData>;
-  userCol : CollectionReference<DocumentData>;
+  userCol: CollectionReference<DocumentData>;
   private updatedSnapshot = new Subject<QuerySnapshot<DocumentData>>();
   obsr_UpdatedSnapshot = this.updatedSnapshot.asObservable();
 
-  constructor() {  
+  constructor(private http: HttpClient) {
     this.db = getFirestore();
-    this.userCol = collection(this.db , 'users');
+    this.userCol = collection(this.db, 'users');
     this.empCol = collection(this.db, 'employee');
     onSnapshot(this.empCol, (snapshot) => {
       this.updatedSnapshot.next(snapshot);
@@ -52,7 +52,7 @@ export class EmployService {
     return;
   }
 
-  async updateUserProfile(docId: string,data:any) {    
+  async updateUserProfile(docId: string, data: any) {
     const docRef = doc(this.db, 'users', docId);
     await updateDoc(docRef, data)
     return;
@@ -61,7 +61,7 @@ export class EmployService {
   async getUserById(docId: string) {
     const docRef = doc(this.userCol, docId);
     const docSnap = await getDoc(docRef);
-  
+
     if (docSnap.exists()) {
       // Document exists, you can access its data using docSnap.data()
       const UserData = docSnap.data();
@@ -70,6 +70,15 @@ export class EmployService {
       // Document does not exist
       return null;
     }
+  }
+
+  getChartInfo() {
+    return this.http.get("http://localhost:3000/sales");  
+
+  }
+
+  getCustomerInfo() {
+    return this.http.get("http://localhost:3000/customer")
   }
 
 

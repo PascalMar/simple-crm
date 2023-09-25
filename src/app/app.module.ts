@@ -37,6 +37,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MatSelectModule} from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -80,6 +81,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatCardModule,
     NgxPaginationModule,
     MatSelectModule,
+    HttpClientModule,
   ],
   providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, AuthGuard, EmployService],
   bootstrap: [AppComponent]

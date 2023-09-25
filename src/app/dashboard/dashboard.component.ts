@@ -2,6 +2,7 @@
 import { registerables } from 'node_modules/chart.js';
 import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { Chart, ChartOptions, ChartData } from 'chart.js';
+import { EmployService } from '../shared/employ.service';
 Chart.register(...registerables);
 
 @Component({
@@ -9,83 +10,46 @@ Chart.register(...registerables);
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements AfterViewInit {
+export class DashboardComponent implements AfterViewInit, OnInit {
   @ViewChild('myChart') private chartRef: ElementRef | undefined;
   @ViewChild('myChart1') private chartRef1: ElementRef | undefined;
-
+  labelData: any[] = [];
+  realData: any[] = [];
+  colorData: any[] = [];
+  chartData: any[] = [];
+  customerData: any[] = [];
+  customerLabelData: any[] = [];
+  customerRealData: any[] = [];
+  customerColorData: any[] = [];
   private chart: Chart<"bar", number[], string> | undefined;
-  private chart1: Chart<"doughnut", number[], string> | undefined;
 
-  constructor() { }
+
+  constructor(private empService: EmployService) { }
+
+  ngOnInit(): void {
+    this.getChartData();
+    this.getCustomerData();
+  }
 
   ngAfterViewInit() {
-    this.createChart();
-    this.createChart2();
-  }
-
-
-
-  private createChart() {
     const ctx: CanvasRenderingContext2D | null = this.chartRef?.nativeElement.getContext('2d');
-    if (ctx) {
-      this.chart = new Chart(ctx, {
-        type: 'bar', // Specify the chart type (e.g., 'bar', 'line', etc.) 
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        },
-      });
-    }
-
+    const ctx1: CanvasRenderingContext2D | null = this.chartRef1?.nativeElement.getContext('2d');
+    this.createChart(this.labelData, this.realData, this.colorData, 'bar', ctx, 'order' );
+    this.createChart(this.customerLabelData, this.customerRealData, this.customerColorData, 'doughnut', ctx1, 'customer');
   }
 
-  private createChart2() {
-    const ctx2: CanvasRenderingContext2D | null = this.chartRef1?.nativeElement.getContext('2d');
 
-    if (ctx2) {
-      this.chart1 = new Chart(ctx2, {
-        type: 'doughnut', 
+
+  private createChart(labelData: any, realData: any, colorData: any, type: any, id: any, label:any) {
+    if (id) {
+      this.chart = new Chart(id, {
+        type: type,
         data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: labelData,
           datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
+            label: label,
+            data: realData,
+            backgroundColor: colorData,
             borderColor: [
               'rgba(255, 99, 132, 1)',
               'rgba(54, 162, 235, 1)',
@@ -106,53 +70,48 @@ export class DashboardComponent implements AfterViewInit {
         },
       });
     }
+
   }
+
+
 
   ngOnDestroy() {
     if (this.chart) {
       this.chart.destroy();
     }
-    if (this.chart1) {
-      this.chart1.destroy();
-    }
   }
 
-  // renderedChart() {
-  //   const myChart = new Chart('barchart', {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  //       datasets: [{
-  //         label: '# of Votes',
-  //         data: [12, 19, 3, 5, 2, 3],
-  //         backgroundColor: [
-  //           'rgba(255, 99, 132, 0.2)',
-  //           'rgba(54, 162, 235, 0.2)',
-  //           'rgba(255, 206, 86, 0.2)',
-  //           'rgba(75, 192, 192, 0.2)',
-  //           'rgba(153, 102, 255, 0.2)',
-  //           'rgba(255, 159, 64, 0.2)'
-  //         ],
-  //         borderColor: [
-  //           'rgba(255, 99, 132, 1)',
-  //           'rgba(54, 162, 235, 1)',
-  //           'rgba(255, 206, 86, 1)',
-  //           'rgba(75, 192, 192, 1)',
-  //           'rgba(153, 102, 255, 1)',
-  //           'rgba(255, 159, 64, 1)'
-  //         ],
-  //         borderWidth: 1
-  //       }]
-  //     },
-  //     options: {
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
+  getChartData() {
+    this.empService.getChartInfo().subscribe((res: any) => {
+      this.chartData = res;
+      console.log(this.chartData);
+
+      if (this.chartData !== null) {
+        for (let i = 0; i < this.chartData.length; i++) {
+          this.labelData.push(this.chartData[i].year);
+          this.realData.push(this.chartData[i].amount);
+          this.colorData.push(this.chartData[i].colorcode);
+        }
+      }
+    })
+      ;
+  }
+
+  getCustomerData() {
+    this.empService.getCustomerInfo().subscribe((res: any) => {
+      this.customerData = res;
+      console.log(this.chartData);
+
+      if (this.chartData !== null) {
+        for (let i = 0; i < this.customerData.length; i++) {
+          this.customerLabelData.push(this.customerData[i].year);
+          this.customerRealData.push(this.customerData[i].amount);
+          this.customerColorData.push(this.customerData[i].colorcode);
+        }
+      }
+    })
+      ;
+  }
 
 
 
