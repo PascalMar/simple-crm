@@ -13,39 +13,40 @@ export class UserProfileComponent implements OnInit {
   selectedImage: any;
   uid: any;
 
-  userProfileForm !: FormGroup ;
+  userProfileForm !: FormGroup;
   profiledata: any;
- 
-   
-  constructor(private fb :FormBuilder ,
+
+
+  constructor(private fb: FormBuilder,
     private storage: AngularFireStorage,
     private afAuth: AngularFireAuth,
-    private empService : EmployService) {
-      this.userProfileForm = this.fb.group({
-        Name: ['', Validators.required],
-        email: [ { value: '', disabled: true }, [Validators.required, Validators.email]],
-        Country: [''],
-      });
-    }
-  
-  
-
-  ngOnInit(): void {
-      
-    this.getCurrentUserUid();
-
-    
+    private empService: EmployService) {
+    this.userProfileForm = this.fb.group({
+      Name: ['', Validators.required],
+      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
+      Country: [''],
+    });
   }
 
-   
+
+
+  ngOnInit(): void {
+
+    this.getCurrentUserUid();
+
+
+  }
+
+
   async getUserById(uid: string) {
     try {
-     
-      this.profiledata  = await this.empService.getUserById(uid);
-      if (this.profiledata ) {
+
+      this.profiledata = await this.empService.getUserById(uid);
+      if (this.profiledata) {
         // Data exists, you can use it here
-        console.log('Employee data:', this.profiledata );
+        console.log('Employee data:', this.profiledata);
         this.userProfileForm.patchValue(this.profiledata);
+        this.selectedImage = this.profiledata.imageUrl;
       } else {
         // Handle the case where the document does not exist
         console.log('Employee not found');
@@ -62,51 +63,41 @@ export class UserProfileComponent implements OnInit {
         this.uid = user.uid;
         this.getUserById(this.uid);
         console.log('Current User UID: ', this.uid);
-       
+
       } else {
         // User is not logged in
         console.log('User is not logged in');
       }
     });
   }
-  
+
 
   onFileSelected(event: any) {
     // Get the selected image file
     this.selectedImage = event.target.files[0];
   }
 
-  updateProfile(){
-    if(this.userProfileForm.valid){
-        // Upload the selected image to a storage service  
+  updateProfile() {
     const filePath = `users_images/${this.selectedImage.name}`;
+
     const fileRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, this.selectedImage);
-
-    // Get the image download URL
     uploadTask.snapshotChanges()
       .pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((downloadURL) => {
             // Now you have the downloadURL, you can use it
-           this.profiledata = this.userProfileForm.value;
-           this.profiledata.imageUrl = downloadURL;
+            const profiledata = this.userProfileForm.value;
+            profiledata.imageUrl = downloadURL;
+            console.log(profiledata);
+
+            if (profiledata !== null) {
+              this.empService.updateUserProfile(this.uid, this.userProfileForm.value);
+            }
           });
         })
       )
       .subscribe();
-  
-      this.empService.updateUserProfile(this.uid,this.profiledata).then(
-        (res:any)=>{
-        
-   console.log('User Profile is updated successfully!!');
-        }
-      ).catch(
-        (res:any)=>{
-          console.log('Something went wrong!!');
-        });
-
-    }
   }
 
 }

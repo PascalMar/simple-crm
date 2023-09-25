@@ -38,6 +38,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -77,11 +79,14 @@ import { HttpClientModule } from '@angular/common/http';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
     MatProgressBarModule,
     MatCardModule,
     NgxPaginationModule,
     MatSelectModule,
     HttpClientModule,
+    MatMenuModule
+    
   ],
   providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, AuthGuard, EmployService],
   bootstrap: [AppComponent]
