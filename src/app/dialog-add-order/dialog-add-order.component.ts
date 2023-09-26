@@ -14,6 +14,7 @@ export class DialogAddOrderComponent implements OnInit {
   loading = false;
   title = 'Add Test';
 
+
   constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<DialogAddOrderComponent>, private orderService: OrdersService, @Inject(MAT_DIALOG_DATA) public data: any,) { }
 
   ngOnInit(): void {
@@ -26,20 +27,20 @@ export class DialogAddOrderComponent implements OnInit {
       Item: ['', Validators.required],
       Name: ['', Validators.required],
       Amount: ['', [Validators.required]],
-      Status: ['', Validators.required],
-      id: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      Status: ['', Validators.required],      
       Location: ['', Validators.required],
       Date: ['', Validators.required],
     });
     this.orderForm.patchValue(this.data);
   }
 
-  addOrder() {
+  addOrders() {
     if (this.orderForm.valid) {
       const userData = this.orderForm.value;
       if (this.data !== null && this.data !== '') {
-        this.orderService.updateOrder(this.data.id, userData).then(
+        this.orderService.updateOrders(this.data.id, userData).then(
           (res: any) => {
+            this.getOrders();
             this.orderForm.reset();
             this.dialogRef.close();
             console.log('data is updated successfully!!');
@@ -50,8 +51,9 @@ export class DialogAddOrderComponent implements OnInit {
           });
 
       } else {
-        this.orderService.addOrder(userData).then(
+        this.orderService.addOrders(userData).then(
           (res: any) => {
+            this.getOrders();
             this.orderForm.reset();
             this.dialogRef.close();
             console.log('data is added successfully!!');
@@ -61,8 +63,18 @@ export class DialogAddOrderComponent implements OnInit {
             console.log('Something went wrong!!');
           });
       }
+    }
+  }
 
-
+  async getOrders() {
+    try {
+      const orders = await this.orderService.getOrder();
+      console.log('Orders:', orders);
+      this.orderService.sendData(orders);
+      // Use the retrieved data as needed in your component
+      // this.filteredData = employees;
+    } catch (error) {
+      // Handle the error appropriately
     }
   }
 }

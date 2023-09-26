@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogAddEmployeesComponent } from '../dialog-add-employees/dialog-add-employees.component';
 import { EmployService } from '../shared/employ.service';
-import { DocumentData, QuerySnapshot } from '@firebase/firestore';
-
 
 @Component({
   selector: 'app-employees',

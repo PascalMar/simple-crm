@@ -25,10 +25,6 @@
             <mat-label>Status</mat-label>
             <input formControlName="Status" matInput>
         </mat-form-field>
-        <mat-form-field>
-            <mat-label>Order ID</mat-label>
-            <input formControlName="id" matInput>
-        </mat-form-field>
     </div>
     <div>
         <mat-form-field class="mr-16">
@@ -42,7 +38,7 @@
     </div>
     <div mat-dialog-actions>
         <button [disabled]="loading" (click)="dialogRef.close()" mat-raised-button>Cancel</button>
-        <button [disabled]="loading || orderForm.invalid" (click)="addOrder()" mat-raised-button color="primary"
+        <button [disabled]="loading || orderForm.invalid" (click)="addOrders()" mat-raised-button color="primary"
             cdkFocusInitial>Save</button>
     </div>
 </form>

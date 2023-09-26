@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, DocumentData, CollectionReference, onSnapshot, QuerySnapshot, getDoc } from 'firebase/firestore'
+import { Firestore, getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, DocumentData, CollectionReference, onSnapshot, QuerySnapshot, getDoc } from 'firebase/firestore'
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -37,7 +37,6 @@ export class EmployService {
   }
 
   getFirestore() {
-
   }
 
   async addEmployee(data: any) {
@@ -106,8 +105,4 @@ export class EmployService {
   getCustomerInfo() {
     return this.http.get("http://localhost:3000/customer")
   }
-
-
-
-
 }
