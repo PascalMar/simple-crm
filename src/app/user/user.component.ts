@@ -55,13 +55,13 @@ export class UserComponent implements OnInit {
     this.filteredData = this.customerCollectiondata.filter((item: any) => {
       // Customize this logic based on your search requirements
       return (
-        item.Name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.Designation.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        item.FirstName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        item.LastName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         item.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.Country.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        item.Street.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        item.ZipCode.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         item.City.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.Hiredate.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.Reportto.toLowerCase().includes(this.searchQuery.toLowerCase())
+        item.Country.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     });
   }
