@@ -4,6 +4,7 @@ import { DialogAddEmployeesComponent } from '../dialog-add-employees/dialog-add-
 import { EmployService } from '../shared/employ.service';
 import { DocumentData, QuerySnapshot } from '@firebase/firestore';
 import { OrdersService } from '../shared/orders.service';
+import { DialogAddOrderComponent } from '../dialog-add-order/dialog-add-order.component';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class OrdersComponent implements OnInit {
   }
 
   openDialog(item: any) {
-    this.dialog.open(OrdersComponent, {
+    this.dialog.open(DialogAddOrderComponent, {
       data: item,
     });
   }

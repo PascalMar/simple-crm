@@ -1,1 +1,48 @@
-<p>dialog-add-order works!</p>
+<form [formGroup]="orderForm">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <h1 mat-dialog-title>{{title}}</h1>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="mr-16">
+                <mat-label>Item</mat-label>
+                <input formControlName="Item" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Customer Name</mat-label>
+                <input formControlName="Name" matInput>
+            </mat-form-field>
+        </div>
+    </div>
+    <div>
+        <mat-form-field class="full-width">
+            <mat-label>Total Amount</mat-label>
+            <input formControlName="Amount" matInput>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="mr-16">
+            <mat-label>Status</mat-label>
+            <input formControlName="Status" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Order ID</mat-label>
+            <input formControlName="id" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="mr-16">
+            <mat-label>Location</mat-label>
+            <input formControlName="Location" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Order Date</mat-label>
+            <input formControlName="Date" matInput>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="loading" (click)="dialogRef.close()" mat-raised-button>Cancel</button>
+        <button [disabled]="loading || orderForm.invalid" (click)="addOrder()" mat-raised-button color="primary"
+            cdkFocusInitial>Save</button>
+    </div>
+</form>
