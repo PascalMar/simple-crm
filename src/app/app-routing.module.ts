@@ -10,6 +10,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,8 @@ const routes: Routes = [
       {path: 'verify-email', component : VerifyMailComponent},
       { path: 'employees', component: EmployeesComponent },
       { path: 'profile-setting', component: UserProfileComponent},
+      { path: 'orders', component: OrdersComponent},
+
     ]
   },
 ]

@@ -40,6 +40,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import {MatMenuModule} from '@angular/material/menu';
+import { OrdersComponent } from './orders/orders.component';
+import { DialogAddOrderComponent } from './dialog-add-order/dialog-add-order.component';
 
 
 
@@ -58,7 +60,9 @@ import {MatMenuModule} from '@angular/material/menu';
     VerifyMailComponent,
     DialogAddEmployeesComponent,
     EmployeesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    OrdersComponent,
+    DialogAddOrderComponent
   ],
   imports: [
     BrowserModule,
