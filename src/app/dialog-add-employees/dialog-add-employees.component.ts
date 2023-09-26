@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployService } from '../shared/employ.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DocumentData, QuerySnapshot } from '@firebase/firestore';
 
 @Component({
   selector: 'app-dialog-add-employees',
@@ -12,6 +13,8 @@ export class DialogAddEmployeesComponent implements OnInit {
   employeesForm!: FormGroup;
   loading = false;
   title = 'Add Employee';
+  empCollectiondata: any = [];
+  employData: any = [];
 
   constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<DialogAddEmployeesComponent>, private empService: EmployService, @Inject(MAT_DIALOG_DATA) public data: any,) { }
 
@@ -39,6 +42,7 @@ export class DialogAddEmployeesComponent implements OnInit {
       if (this.data !== null && this.data !== '') {
         this.empService.updateEployee(this.data.id, userData).then(
           (res: any) => {
+            this.getEmployees();
             this.employeesForm.reset();
             this.dialogRef.close();
             console.log('data is updated successfully!!');
@@ -51,6 +55,7 @@ export class DialogAddEmployeesComponent implements OnInit {
       } else {
         this.empService.addEmployee(userData).then(
           (res: any) => {
+            this.getEmployees();
             this.employeesForm.reset();
             this.dialogRef.close();
             console.log('data is added successfully!!');
@@ -60,8 +65,22 @@ export class DialogAddEmployeesComponent implements OnInit {
             console.log('Something went wrong!!');
           });
       }
-
-
     }
   }
+
+  async getEmployees() {
+    try {
+      const employees = await this.empService.getEmployees();
+      console.log('Employees:', employees);
+      this.empService.sendData(employees);
+      // Use the retrieved data as needed in your component
+      // this.filteredData = employees;
+    } catch (error) {
+      // Handle the error appropriately
+    }
+  }
+
+
+
+
 }

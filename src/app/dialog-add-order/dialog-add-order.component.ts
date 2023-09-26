@@ -18,16 +18,16 @@ export class DialogAddOrderComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data !== null && this.data !== '') {
-      this.title = 'Update Employee';
+      this.title = 'Update Order';
     } else {
-      this.title = 'Add Employee';
+      this.title = 'Add Order';
     }
     this.orderForm = this.formBuilder.group({
       Item: ['', Validators.required],
       Name: ['', Validators.required],
       Amount: ['', [Validators.required]],
       Status: ['', Validators.required],
-      id: ['', Validators.required],
+      id: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
       Location: ['', Validators.required],
       Date: ['', Validators.required],
     });

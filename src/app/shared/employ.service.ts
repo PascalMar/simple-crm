@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Firestore, getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, DocumentData, CollectionReference, onSnapshot, QuerySnapshot, getDoc } from 'firebase/firestore'
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,12 @@ export class EmployService {
 
   empCol: CollectionReference<DocumentData>;
   userCol: CollectionReference<DocumentData>;
+  empCollectiondata: any = [];
   private updatedSnapshot = new Subject<QuerySnapshot<DocumentData>>();
   obsr_UpdatedSnapshot = this.updatedSnapshot.asObservable();
+  private dataSubject = new Subject<any>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private firestore: AngularFirestore) {
     this.db = getFirestore();
     this.userCol = collection(this.db, 'users');
     this.empCol = collection(this.db, 'employee');
@@ -25,6 +28,13 @@ export class EmployService {
     })
   }
 
+  getData() {
+    return this.dataSubject.asObservable();
+  }
+
+  sendData(data: any) {
+    this.dataSubject.next(data);
+  }
 
   getFirestore() {
 
@@ -36,8 +46,24 @@ export class EmployService {
   }
 
   async getEmployees() {
-    const snapshot = await getDocs(this.empCol);
-    return snapshot;
+    try {
+      const collectionRef = this.firestore.collection('employee');
+      const snapshot = await collectionRef.get().toPromise();
+
+      if (snapshot) {
+        return snapshot.docs.map(doc => {
+          const data: any = doc.data();
+          const id = doc.id;
+          return { id, ...data };
+        });
+      } else {
+        console.error('Snapshot is undefined.');
+        return []; // Return an empty array or handle the error appropriately.
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error;
+    }
   }
 
   async deleteEmployee(docId: string) {
@@ -73,7 +99,7 @@ export class EmployService {
   }
 
   getChartInfo() {
-    return this.http.get("http://localhost:3000/sales");  
+    return this.http.get("http://localhost:3000/sales");
 
   }
 

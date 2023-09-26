@@ -43,14 +43,13 @@ export class OrdersComponent implements OnInit {
   async getOrder() {
     const snapshot = await this.orderService.getOrder();
     this.updateOrderCollection(snapshot);
-    console.log(this.ordersCollectiondata, ' data');
     this.filteredData = this.ordersCollectiondata;
   }
 
   updateOrderCollection(snapshot: QuerySnapshot<DocumentData>) {
     this.ordersCollectiondata = [];
-    snapshot.docs.forEach((emp) => {
-      this.ordersCollectiondata.push({ ...emp.data(), id: emp.id });
+    snapshot.docs.forEach((order) => {
+      this.ordersCollectiondata.push({ ...order.data(), id: order.id });
     })
   }
 
@@ -61,13 +60,13 @@ export class OrdersComponent implements OnInit {
       this.filteredData = this.ordersCollectiondata.filter((item: any) => {
         // Customize this logic based on your search requirements
         return (
+          item.Item.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.Name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.Designation.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.Country.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.City.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.Hiredate.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.Reportto.toLowerCase().includes(this.searchQuery.toLowerCase())
+          item.Amount.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.Status.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.id.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.Location.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.Date.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
       });
     }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogAddEmployeesComponent } from '../dialog-add-employees/dialog-add-employees.component';
 import { EmployService } from '../shared/employ.service';
 import { DocumentData, QuerySnapshot } from '@firebase/firestore';
+
 
 @Component({
   selector: 'app-employees',
@@ -21,36 +22,40 @@ export class EmployeesComponent implements OnInit {
   constructor(public dialog: MatDialog, private empService: EmployService) { }
 
   ngOnInit(): void {
+    this.empService.getData().subscribe(data => {
+      this.filteredData = data;
+      this.empCollectiondata = data;
+      console.log('Test', this.empCollectiondata);
+    });
     this.getEmployees();
-    this.empService.obsr_UpdatedSnapshot.subscribe((snapshot) => {
-      this.updateEmployeeCollection(snapshot);
-    })
   }
 
-
+  async getEmployees() {
+    try {
+      const employees = await this.empService.getEmployees();
+      console.log('Employees:', employees);
+      // Use the retrieved data as needed in your component
+      this.filteredData = employees;
+      this.empCollectiondata = employees;
+    } catch (error) {
+      // Handle the error appropriately
+    }
+  }
 
   openDialog(item: any) {
-    this.dialog.open(DialogAddEmployeesComponent, {
+    let dialogRef = this.dialog.open(DialogAddEmployeesComponent, {
+
       data: item,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the data received from the dialog
+      console.log('Dialog closed with data:', result);
     });
   }
 
   async delete(docId: string) {
     await this.empService.deleteEmployee(docId);
-  }
-
-  async getEmployees() {
-    const snapshot = await this.empService.getEmployees();
-    this.updateEmployeeCollection(snapshot);
-    console.log(this.empCollectiondata, ' data');
-    this.filteredData = this.empCollectiondata;
-  }
-
-  updateEmployeeCollection(snapshot: QuerySnapshot<DocumentData>) {
-    this.empCollectiondata = [];
-    snapshot.docs.forEach((emp) => {
-      this.empCollectiondata.push({ ...emp.data(), id: emp.id });
-    })
+    this.getEmployees();
   }
 
   updateFilteredData() {
@@ -76,6 +81,4 @@ export class EmployeesComponent implements OnInit {
     this.updateFilteredData();
     console.log(this.filteredData, ' filter data');
   }
-
-
 }

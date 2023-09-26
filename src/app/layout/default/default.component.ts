@@ -7,8 +7,11 @@ import { AuthService } from 'src/app/shared/auth.service';
   styleUrls: ['./default.component.scss']
 })
 export class DefaultComponent {
+  currentUserName: string = '';
 
   constructor(private authService: AuthService) { }
+
+  
 
 
 
