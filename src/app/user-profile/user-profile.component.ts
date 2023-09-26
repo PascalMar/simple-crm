@@ -4,6 +4,8 @@ import { EmployService } from 'src/app/shared/employ.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -15,12 +17,14 @@ export class UserProfileComponent implements OnInit {
 
   userProfileForm !: FormGroup;
   profiledata: any;
+  selectedImageURL: any;
 
 
   constructor(private fb: FormBuilder,
     private storage: AngularFireStorage,
     private afAuth: AngularFireAuth,
-    private empService: EmployService) {
+    private empService: EmployService,
+    private snackBar: MatSnackBar) {
     this.userProfileForm = this.fb.group({
       Name: ['', Validators.required],
       email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
@@ -40,13 +44,12 @@ export class UserProfileComponent implements OnInit {
 
   async getUserById(uid: string) {
     try {
-
       this.profiledata = await this.empService.getUserById(uid);
       if (this.profiledata) {
         // Data exists, you can use it here
         console.log('Employee data:', this.profiledata);
         this.userProfileForm.patchValue(this.profiledata);
-        this.selectedImage = this.profiledata.imageUrl;
+        this.selectedImageURL = this.profiledata.imageUrl;
       } else {
         // Handle the case where the document does not exist
         console.log('Employee not found');
@@ -75,10 +78,20 @@ export class UserProfileComponent implements OnInit {
   onFileSelected(event: any) {
     // Get the selected image file
     this.selectedImage = event.target.files[0];
+    if (this.selectedImage) {
+      // Read the selected image and set the data URL
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.selectedImageURL = event.target.result as string;
+      };
+      reader.readAsDataURL(this.selectedImage);
+    } else {
+      this.selectedImageURL = null; // Clear the image URL if no image is selected
+    }
   }
 
   updateProfile() {
-    const filePath = `users_images/${this.selectedImage.name}`;
+    const filePath = `users_images/${this.selectedImage?.name}`;
 
     const fileRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, this.selectedImage);
@@ -93,11 +106,14 @@ export class UserProfileComponent implements OnInit {
 
             if (profiledata !== null) {
               this.empService.updateUserProfile(this.uid, this.userProfileForm.value);
+              this.snackBar.open('User profile updated succesfully', 'Close', {
+                duration: 3000, // Display the alert for 3 seconds
+                panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
+              });
             }
           });
         })
       )
       .subscribe();
   }
-
 }

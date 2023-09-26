@@ -36,12 +36,16 @@ import { DialogAddEmployeesComponent } from './dialog-add-employees/dialog-add-e
 import { EmployeesComponent } from './employees/employees.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { OrdersComponent } from './orders/orders.component';
 import { DialogAddOrderComponent } from './dialog-add-order/dialog-add-order.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CalendarComponent } from './calendar/calendar.component';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
 
 
 
@@ -62,7 +66,8 @@ import { DialogAddOrderComponent } from './dialog-add-order/dialog-add-order.com
     EmployeesComponent,
     UserProfileComponent,
     OrdersComponent,
-    DialogAddOrderComponent
+    DialogAddOrderComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -89,8 +94,12 @@ import { DialogAddOrderComponent } from './dialog-add-order/dialog-add-order.com
     NgxPaginationModule,
     MatSelectModule,
     HttpClientModule,
-    MatMenuModule
-    
+    MatMenuModule,
+    MatSnackBarModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, AuthGuard, EmployService],
   bootstrap: [AppComponent]

@@ -11,6 +11,7 @@ import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OrdersComponent } from './orders/orders.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'employees', component: EmployeesComponent },
       { path: 'profile-setting', component: UserProfileComponent},
       { path: 'orders', component: OrdersComponent},
+      { path: 'calendar', component: CalendarComponent},
 
     ]
   },
