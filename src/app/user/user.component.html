@@ -20,8 +20,8 @@
                               <th scope="col">Country</th>                              
                           </tr>
                       </thead>
-                      <tbody>
-                          <tr *ngFor="let item of customerCollectiondata">
+                      <tbody *ngIf="filteredData.length > 0; else noRecordsFound">
+                        <tr *ngFor="let item of filteredData | paginate: { itemsPerPage: 10, currentPage: p}">
                               <td>{{item.FirstName}}</td>
                               <td>{{item.LastName}}</td>
                               <td>{{item.email}}</td>
@@ -40,8 +40,11 @@
                           </tr>
 
                       </tbody>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
                   </table>
-
+                  <ng-template #noRecordsFound>
+                    <p>No records found.</p>
+                </ng-template>
               </mat-card-content>
           </mat-card>
       </div>

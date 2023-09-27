@@ -18,8 +18,7 @@ export class OrdersService {
   private dataSubject = new Subject<any>();
 
   constructor(private http: HttpClient, private firestore: AngularFirestore) {
-    this.db = getFirestore();
-    // this.orderCol = collection(this.db, 'orders');
+    this.db = getFirestore(); 
     this.orderCol = collection(this.db, 'orders');
     onSnapshot(this.orderCol, (snapshot) => {
       this.updatedSnapshot.next(snapshot);

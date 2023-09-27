@@ -15,40 +15,47 @@ export class UserComponent implements OnInit {
   customerCollectiondata: any = [];
   searchQuery: string = '';
   filteredData: any = [];
-
+  p: number = 1;
 
 
 
   constructor(public dialog: MatDialog, public customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.getCustomer();
-    this.customerService.obsr_UpdatedSnapshot.subscribe((snapshot) => {
-      this.updateCustomerCollection(snapshot);
-    })
+    this.customerService.getData().subscribe(data => {
+      this.filteredData = data;
+      this.customerCollectiondata = data;
+      console.log('Test', this.customerCollectiondata);
+    });
+    this.getOrders();
+  }
+
+  async getOrders() {
+    try {
+      const customer = await this.customerService.getCustomer();
+      console.log('Customer:', customer);
+      // Use the retrieved data as needed in your component
+      this.filteredData = customer;
+      this.customerCollectiondata = customer;
+    } catch (error) {
+      // Handle the error appropriately
+    }
   }
 
   openDialog(item: any) {
-    this.dialog.open(DialogAddUserComponent, {
+    let dialogRef = this.dialog.open(DialogAddUserComponent, {
+
       data: item,
     });
-  }
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the data received from the dialog
+      console.log('Dialog closed with data:', result);
+    });
+  } 
 
   async delete(docId: string) {
     await this.customerService.deleteCustomer(docId);
-  }
-
-  async getCustomer() {
-    const snapshot = await this.customerService.getCustomer();
-    this.updateCustomerCollection(snapshot);
-    console.log(this.customerCollectiondata, ' data');
-  }
-
-  updateCustomerCollection(snapshot: QuerySnapshot<DocumentData>) {
-    this.customerCollectiondata = [];
-    snapshot.docs.forEach((cus) => {
-      this.customerCollectiondata.push({ ...cus.data(), id: cus.id });
-    })
+    this.getOrders();
   }
 
   updateFilteredData() {

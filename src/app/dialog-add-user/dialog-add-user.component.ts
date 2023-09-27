@@ -40,6 +40,7 @@ export class DialogAddUserComponent implements OnInit {
       if (this.data !== null && this.data !== '') {
         this.customerService.updateCustomer(this.data.id, userData).then(
           (res: any) => {
+            this.getCustomers();
             this.customerForm.reset();
             this.dialogRef.close();
             console.log('data is updated successfully!!');
@@ -52,6 +53,7 @@ export class DialogAddUserComponent implements OnInit {
       } else {
         this.customerService.addCustomer(userData).then(
           (res: any) => {
+            this.getCustomers();
             this.customerForm.reset();
             this.dialogRef.close();
             console.log('data is added successfully!!');
@@ -61,6 +63,18 @@ export class DialogAddUserComponent implements OnInit {
             console.log('Something went wrong!!');
           });
       }
+    }
+  }
+
+  async getCustomers() {
+    try {
+      const orders = await this.customerService.getCustomer();
+      console.log('Orders:', orders);
+      this.customerService.sendData(orders);
+      // Use the retrieved data as needed in your component
+      // this.filteredData = employees;
+    } catch (error) {
+      // Handle the error appropriately
     }
   }
 

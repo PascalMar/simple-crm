@@ -5,20 +5,20 @@
     </div>
 
     <ul class="menu-items">
-      <li routerLink="/dashboard">
+      <li routerLink="/dashboard" [ngClass]="{'active': activeItem === 'Unterpunkt1'}" (click)="handleItemClick('Unterpunkt1')">
         <mat-icon>fact_check</mat-icon>Dashboard
       </li>
-      <li routerLink="/user">
+      <li routerLink="/user" [ngClass]="{'active': activeItem === 'Unterpunkt2'}" (click)="handleItemClick('Unterpunkt2')" >
         <mat-icon>perm_identity</mat-icon>Customer
       </li>
-      <li routerLink="/employees">
+      <li routerLink="/employees"[ngClass]="{'active': activeItem === 'Unterpunkt3'}" (click)="handleItemClick('Unterpunkt3')">
         <mat-icon>perm_identity</mat-icon>Employees
       </li>
-      <li routerLink="/orders">
+      <li routerLink="/orders"[ngClass]="{'active': activeItem === 'Unterpunkt4'}" (click)="handleItemClick('Unterpunkt4')">
         <mat-icon>perm_identity</mat-icon>Orders
       </li>
-      <li routerLink="/calendar">
-        <mat-icon>perm_identity</mat-icon>calendar
+      <li routerLink="/calendar"[ngClass]="{'active': activeItem === 'Unterpunkt5'}" (click)="handleItemClick('Unterpunkt5')">
+        <mat-icon>perm_identity</mat-icon>Calendar
       </li>
 
 

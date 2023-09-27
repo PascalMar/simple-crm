@@ -8,10 +8,14 @@ import { AuthService } from 'src/app/shared/auth.service';
 })
 export class DefaultComponent {
   currentUserName: string = '';
+  activeItem: string = '' ;
 
   constructor(private authService: AuthService) { }
 
   
+  handleItemClick(itemName: string) {
+    this.activeItem = itemName;
+  }
 
 
 
