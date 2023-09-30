@@ -1,60 +1,75 @@
 <div class="container-fluid">
-  <div class="row">
-      <div class="col-md-12">
-          <mat-card>
-              <mat-card-content>
-                  <div class="row">
-                      <div class="col-md-12">
-                          <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search...">
-                      </div>
-                  </div>
-                  <table class="table table-hover table-responsive">
-                      <thead>
-                          <tr>
-                              <th scope="col">First Name</th>
-                              <th scope="col">Last Name</th>
-                              <th scope="col">E-Mail</th>
-                              <th scope="col">Street</th>
-                              <th scope="col">Zip Code</th>
-                              <th scope="col">City</th>
-                              <th scope="col">Country</th>                              
-                          </tr>
-                      </thead>
-                      <tbody *ngIf="filteredData.length > 0; else noRecordsFound">
-                        <tr *ngFor="let item of filteredData | paginate: { itemsPerPage: 10, currentPage: p}">
-                              <td>{{item.FirstName}}</td>
-                              <td>{{item.LastName}}</td>
-                              <td>{{item.email}}</td>
-                              <td>{{item.Street}}</td>
-                              <td>{{item.ZipCode}}</td>
-                              <td>{{item.City}}</td>
-                              <td>{{item.Country}}</td>
-                              <td>
-                                  <div style="display: flex;gap: 8px;">
-                                      <button mat-raised-button class="btn btn-primary"
-                                          (click)="delete(item.id)">Delete</button>
-                                      <button mat-raised-button color="primary" class="btn btn-primary"
-                                          (click)="openDialog(item)">Edit</button>
-                                  </div>
-                              </td>
-                          </tr>
+    <div class="row">
+        <div class="col-md-6" style="margin-left: 1rem;">
+            <div class="input-group mb-3">
+                <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" class="form-control"
+                    placeholder="Search..." aria-label="Search" aria-describedby="search-button"
+                    style="border-radius: 10px;" />
 
-                      </tbody>
-                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                  </table>
-                  <ng-template #noRecordsFound>
-                    <p>No records found.</p>
-                </ng-template>
-              </mat-card-content>
-          </mat-card>
-      </div>
-  </div>
-  <div class="row mt-5">
-      <div class="col-md-12">
-          <button (click)="openDialog('')" class="add-user-btn" mat-fab color="primary"
-              matTooltip="Add a new Employee">
-              <mat-icon>add</mat-icon>
-          </button>
-      </div>
-  </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Data Tables -->
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-truncate">First Name</th>
+                                    <th class="text-truncate">Last Name</th>
+                                    <th class="text-truncate">E-Mail</th>
+                                    <th class="text-truncate">Street</th>
+                                    <th class="text-truncate">Zip Code</th>
+                                    <th class="text-truncate">City</th>
+                                    <th class="text-truncate">Country</th>
+                                    <th class="text-truncate">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="filteredData.length > 0; else noRecordsFound">
+                                <tr *ngFor="let item of filteredData | paginate: { itemsPerPage: 10, currentPage: p}">
+                                    <td class="text-truncate">{{item.FirstName}}</td>
+                                    <td class="text-truncate">{{item.LastName}}</td>
+                                    <td class="text-truncate">
+                                        <i class="mdi mdi-laptop mdi-24px text-danger me-1"></i> {{item.email}}
+                                    </td>
+                                    <td class="text-truncate">{{item.Street}}</td>
+                                    <td class="text-truncate">{{item.ZipCode}}</td>
+                                    <td class="text-truncate">{{item.City}}</td>
+                                    <td class="text-truncate">{{item.Country}}</td>
+                                    <td>
+                                        <div style="display: flex; gap: 8px;">
+                                            <mat-icon style="cursor: pointer;" color="warn"
+                                                (click)="delete(item.id)">delete</mat-icon>
+                                            <mat-icon style="cursor: pointer;" color="primary"
+                                                (click)="openDialog(item)">edit</mat-icon>
+                                        </div>
+                                    </td>
+                                    <!-- <td><span class="badge bg-label-warning rounded-pill">Pending</span></td> -->
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                        <ng-template #noRecordsFound>
+                            <p>No records found.</p>
+                        </ng-template>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <!--/ Data Tables -->
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <button (click)="openDialog('')" class="add-user-btn" mat-fab color="primary"
+                matTooltip="Add a new Employee">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
 </div>

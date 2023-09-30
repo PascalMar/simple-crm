@@ -14,6 +14,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { CalendarComponent } from './calendar/calendar.component';
 
 
+
 const routes: Routes = [
   {
     path: '',
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'profile-setting', component: UserProfileComponent},
       { path: 'orders', component: OrdersComponent},
       { path: 'calendar', component: CalendarComponent},
+     
 
     ]
   },

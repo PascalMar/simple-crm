@@ -13,6 +13,19 @@ export class AuthService {
 
   constructor(private fireauth: AngularFireAuth, private router: Router, private firestore: AngularFirestore,) { }
 
+  guestLogin() {
+    this.fireauth.signInAnonymously().then((userCredential) => {
+      const user: any = userCredential.user;
+      console.log('Anonymous user ID:', user?.uid);
+      localStorage.setItem('token', JSON.stringify(user?.uid));
+      this.router.navigate(['/dashboard']);
+    })
+      .catch((error) => {
+        console.error('Error signing in anonymously:', error);
+      });
+  }
+
+
   login(email: string, password: string) {
     this.fireauth.signInWithEmailAndPassword(email, password).then((res: any) => {
       localStorage.setItem('token', 'true');

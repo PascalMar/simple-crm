@@ -43,10 +43,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { OrdersComponent } from './orders/orders.component';
 import { DialogAddOrderComponent } from './dialog-add-order/dialog-add-order.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { CalendarComponent } from './calendar/calendar.component';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
-
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './calendar/calendar.component';
+import { NgxApexchartsModule } from 'ngx-apexcharts';
 
 
 
@@ -67,7 +67,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
     UserProfileComponent,
     OrdersComponent,
     DialogAddOrderComponent,
-    CalendarComponent
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +100,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    NgxApexchartsModule
   ],
   providers: [AuthService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, AuthGuard, EmployService],
   bootstrap: [AppComponent]

@@ -58,8 +58,6 @@ mat-toolbar-row {
 }
 
 .router-container {
-    padding-left: 56px;
-    padding-right: 56px;
     padding-top: 16px;
 }
 
@@ -69,6 +67,12 @@ mat-toolbar-row {
 }
 
 .active {
-    background-color: rgb(98, 98, 104); 
-    color: white; 
-  }
+    background-color: rgb(98, 98, 104);
+    color: white;
+}
+
+img {
+    height: 45px;
+    width: auto;
+    border-radius: 100%;
+}

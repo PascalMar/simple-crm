@@ -1,7 +1,6 @@
-<div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-4">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card shadow">
                 <div class="card-body">
                     <form>
@@ -12,12 +11,12 @@
                             <label for="exampleInputEmail1" class="form-label">Email</label>
                             <input type="email" class="form-control" name="email" [(ngModel)]="email">
                         </div>
-
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" [(ngModel)]="password">
                         </div>
                         <button type="button" class="btn btn-primary" (click)="login()">Login</button>
+                        <button (click)="guestLogin()" class="btn btn-primary">Guest Login</button>
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="/register" style="text-decoration: none;">Need Account ? <span
@@ -32,7 +31,158 @@
                             <a click="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
                                 <div class="card shadow text-center">
                                     <div class="card-body">
-                                        <!-- <img src="../../../assets/icons8-google-48.png" alt height="24px" width="24px"> -->
+                                        <img src="../../assets/img/icons/icons8-google-48.png" alt height="24px" width="24px">
+                                        Sign In with
+                                        Google
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- <div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <form class="p-4">
+                    <div class="form-group">
+                        <h1>{{ title }}</h1>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">E-Mail</label>
+                            <input type="email" class="form-control" name="email" [(ngModel)]="email">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="password">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button (click)="login()" class="btn btn-secondary">Login</button>
+                            <button (click)="guestLogin()" class="btn btn-primary">Guest Login</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="/register" style="text-decoration: none;">Need Account ? <span
+                                        class="text-danger">Register</span></a>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <a click="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
+                                <div class="card shadow text-center">
+                                    <div class="card-body">
+                                        <img src="../../../assets/img/icons/icons8-google-48.png" alt height="24px"
+                                            width="24px">
+                                        Sign In with
+                                        Google
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+    <!-- <div class="card">
+    <form class="p-4">
+        <div class="form-group">
+            <h1>{{ title }}</h1>
+            <div class="mb-4">
+                <label for="email" class="form-label">E-Mail</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="email">
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="password">
+            </div>
+            <div class="d-grid gap-2">
+                <button (click)="login()" class="btn btn-secondary">Login</button>
+                <button (click)="guestLogin()" class="btn btn-primary">Guest Login</button>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="/register" style="text-decoration: none;">Need Account ? <span
+                            class="text-danger">Register</span></a>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <a click="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
+                    <div class="card shadow text-center">
+                        <div class="card-body">
+                            <img src="../../../assets/img/icons/icons8-google-48.png" alt height="24px" width="24px">
+                            Sign In with
+                            Google
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </form>
+</div> -->
+    <!-- 
+<div class="container-fluid p-4">
+    <div class="row mt-5">
+        <div class="col"></div>
+        <div class="col-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <h4 class="text-dark text-muted">Login</h4>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" [(ngModel)]="email">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="password">
+                        </div>
+                        <button type="button" class="btn btn-secondary" (click)="login()">Login</button>
+                        <button type="button" class="btn btn-secondary" (click)="guestLogin()">Guest Login</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="/register" style="text-decoration: none;">Need Account ? <span
+                                        class="text-danger">Register</span></a>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <a click="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
+                                <div class="card shadow text-center">
+                                    <div class="card-body">
+                                        <img src="../../../assets/img/icons/icons8-google-48.png" alt height="24px"
+                                            width="24px">
                                         Sign In with
                                         Google
                                     </div>
@@ -45,4 +195,4 @@
         </div>
         <div class="col"></div>
     </div>
-</div>
+</div> -->

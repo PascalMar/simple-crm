@@ -1,48 +1,43 @@
-<form [formGroup]="employeesForm">
+<form [formGroup]="employeesForm" class="p-4">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-    <h1 mat-dialog-title>{{title}}</h1>
-    <div mat-dialog-content>
-        <div>
-            <mat-form-field class="mr-16">
-                <mat-label>Name</mat-label>
-                <input formControlName="Name" matInput>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Designation</mat-label>
-                <input formControlName="Designation" matInput>
-            </mat-form-field>
+    <h1>{{ title }}</h1>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="Name">
+        </div>
+        <div class="col-md-6">
+            <label for="designation" class="form-label">Designation</label>
+            <input type="text" class="form-control" id="designation" formControlName="Designation">
         </div>
     </div>
-    <div>
-        <mat-form-field class="full-width">
-            <mat-label>E-Mail</mat-label>
-            <input formControlName="email" matInput>
-        </mat-form-field>
+    <div class="mb-4">
+        <label for="email" class="form-label">E-Mail</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
     </div>
-
-    <div>
-        <mat-form-field class="mr-16">
-            <mat-label>Country</mat-label>
-            <input formControlName="Country" matInput>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Hire Date</mat-label>
-            <input formControlName="Hiredate" matInput>
-        </mat-form-field>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control" id="country" formControlName="Country">
+        </div>
+        <div class="col-md-6">
+            <label for="hireDate" class="form-label">Hire Date</label>
+            <input type="date" class="form-control" id="hireDate" formControlName="Hiredate">
+        </div>
     </div>
-    <div>
-        <mat-form-field class="mr-16">
-            <mat-label>Report To</mat-label>
-            <input formControlName="Reportto" matInput>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>City</mat-label>
-            <input formControlName="City" matInput>
-        </mat-form-field>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="reportTo" class="form-label">Report To</label>
+            <input type="text" class="form-control" id="reportTo" formControlName="Reportto">
+        </div>
+        <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" formControlName="City">
+        </div>
     </div>
-    <div mat-dialog-actions>
-        <button [disabled]="loading" (click)="dialogRef.close()" mat-raised-button>Cancel</button>
-        <button [disabled]="loading || employeesForm.invalid" (click)="addEmployees()" mat-raised-button color="primary"
-            cdkFocusInitial>Save</button>
+    <div class="d-grid gap-2">
+        <button [disabled]="loading" (click)="dialogRef.close()" class="btn btn-secondary">Cancel</button>
+        <button [disabled]="loading || employeesForm.invalid" (click)="addEmployees()"
+            class="btn btn-primary">Save</button>
     </div>
 </form>

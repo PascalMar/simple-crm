@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
+import { signInAnonymously } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +11,14 @@ import { AuthService } from '../shared/auth.service';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  title = 'Login' ; 
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
+
+  guestLogin() {
+    this.auth.guestLogin();    
+    
+  }
 
   login() {
 

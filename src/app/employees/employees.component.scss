@@ -3,3 +3,17 @@
     right: 56px;
     top: 12rem;
 }
+
+.table-responsive::-webkit-scrollbar {
+    width: 7px; /* Width of the scrollbar */
+    height: 6px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb {
+    background-color: #6c757d; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Rounded corners for the thumb */
+  }
+  
+  .table-responsive::-webkit-scrollbar-track {
+    background-color: #f8f9fa; /* Color of the scrollbar track */
+  }

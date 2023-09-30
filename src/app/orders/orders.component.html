@@ -1,57 +1,70 @@
 <div class="container-fluid">
     <div class="row">
+        <div class="col-md-6" style="margin-left: 1rem;">
+            <div class="input-group mb-3">
+                <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" class="form-control"
+                    placeholder="Search..." aria-label="Search" aria-describedby="search-button"
+                    style="border-radius: 10px;" />
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
-            <mat-card>
-                <mat-card-content>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search...">
-                        </div>
-                    </div>
-                    <table class="table table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th scope="col">Item</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Total Amount</th>
-                                <th scope="col">Status</th>
-                       
-                                <th scope="col">Location</th>
-                                <th scope="col">Order Date</th>
-                              
-                            </tr>
-                        </thead>
-                        <tbody *ngIf="filteredData.length > 0; else noRecordsFound">
-                            <tr *ngFor="let item of filteredData | paginate: { itemsPerPage: 10, currentPage: p}">
-                                <td>{{item.Item}}</td>
-                                <td>{{item.Name}}</td>
-                                <td>{{item.Amount}}</td>
-                                <td>{{item.Status}}</td>                               
-                                <td>{{item.Location}}</td>
-                                <td>{{item.Date}}</td>
-                                <td>
-                                    <div style="display: flex;gap: 8px;">
-                                        <button mat-raised-button class="btn btn-primary"
-                                            (click)="delete(item.id)">Delete</button>
-                                        <button mat-raised-button color="primary" class="btn btn-primary"
-                                            (click)="openDialog(item)">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+            <!-- Data Tables -->
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-truncate">Item</th>
+                                    <th class="text-truncate">Customer Name</th>
+                                    <th class="text-truncate">Total Amount</th>
+                                    <th class="text-truncate">Status</th>
+                                    <th class="text-truncate">Location</th>
+                                    <th class="text-truncate">Order Month</th>
+                                    <th class="text-truncate">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="filteredData.length > 0; else noRecordsFound">
+                                <tr *ngFor="let item of filteredData | paginate: { itemsPerPage: 10, currentPage: p}">
+                                    <td class="text-truncate">{{item.Item}}</td>
+                                    <td class="text-truncate">{{item.Name}}</td>
+                                    <td class="text-truncate"> {{item.Amount}} </td>
+                                    <td class="text-truncate">{{item.Status}}</td>
+                                    <td class="text-truncate">{{item.Location}}</td>
+                                    <td class="text-truncate">{{item.Date}}</td>
+
+                                    <td>
+                                        <div style="display: flex; gap: 8px;">
+                                            <mat-icon style="cursor: pointer;" color="warn"
+                                                (click)="delete(item.id)">delete</mat-icon>
+                                            <mat-icon style="cursor: pointer;" color="primary"
+                                                (click)="openDialog(item)">edit</mat-icon>
+                                        </div>
+                                    </td>
+                                    <!-- <td><span class="badge bg-label-warning rounded-pill">Pending</span></td> -->
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                        <ng-template #noRecordsFound>
+                            <p>No records found.</p>
+                        </ng-template>
                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    </table>
-                    <ng-template #noRecordsFound>
-                        <p>No records found.</p>
-                    </ng-template>
-                </mat-card-content>
-            </mat-card>
+                    </div>
+                </div>
+            </div>
+            <!--/ Data Tables -->
         </div>
     </div>
     <div class="row mt-5">
         <div class="col-md-12">
             <button (click)="openDialog('')" class="add-user-btn" mat-fab color="primary"
-                matTooltip="Add a new Order">
+                matTooltip="Add a new Employee">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

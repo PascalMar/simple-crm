@@ -1,48 +1,43 @@
-<form [formGroup]="customerForm">
+<form [formGroup]="customerForm" class="p-4">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-    <h1 mat-dialog-title>{{title}}</h1>
-    <div mat-dialog-content>
-        <div>
-            <mat-form-field class="mr-16">
-                <mat-label>First Name</mat-label>
-                <input formControlName="FirstName" matInput>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Last Name</mat-label>
-                <input formControlName="LastName" matInput>
-            </mat-form-field>
+    <h1>{{ title }}</h1>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="FirstName" formControlName="FirstName">
+        </div>
+        <div class="col-md-6">
+            <label for="LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="LastName" formControlName="LastName">
         </div>
     </div>
-    <div>
-        <mat-form-field class="full-width">
-            <mat-label>E-Mail</mat-label>
-            <input formControlName="email" matInput>
-        </mat-form-field>
+    <div class="mb-4">
+        <label for="email" class="form-label">E-Mail</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
     </div>
-
-    <div>
-        <mat-form-field class="mr-16">
-            <mat-label>Street</mat-label>
-            <input formControlName="Street" matInput>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Zip Code</mat-label>
-            <input formControlName="ZipCode" matInput>
-        </mat-form-field>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="Street" class="form-label">Street</label>
+            <input type="text" class="form-control" id="Street" formControlName="Street">
+        </div>
+        <div class="col-md-6">
+            <label for="ZipCode" class="form-label">Zip Code</label>
+            <input type="date" class="form-control" id="ZipCode" formControlName="ZipCode">
+        </div>
     </div>
-    <div>
-        <mat-form-field class="mr-16">
-            <mat-label>City</mat-label>
-            <input formControlName="City" matInput>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Country</mat-label>
-            <input formControlName="Country" matInput>
-        </mat-form-field>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="City" class="form-label">City</label>
+            <input type="text" class="form-control" id="City" formControlName="City">
+        </div>
+        <div class="col-md-6">
+            <label for="Country" class="form-label">Country</label>
+            <input type="text" class="form-control" id="Country" formControlName="Country">
+        </div>
     </div>
-    <div mat-dialog-actions>
-        <button [disabled]="loading" (click)="dialogRef.close()" mat-raised-button>Cancel</button>
-        <button [disabled]="loading || customerForm.invalid" (click)="addCustomer()" mat-raised-button color="primary"
-            cdkFocusInitial>Save</button>
+    <div class="d-grid gap-2">
+        <button [disabled]="loading" (click)="dialogRef.close()" class="btn btn-secondary">Cancel</button>
+        <button [disabled]="loading || customerForm.invalid" (click)="addCustomer()"
+            class="btn btn-primary">Save</button>
     </div>
 </form>

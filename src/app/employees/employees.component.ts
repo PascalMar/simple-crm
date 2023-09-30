@@ -34,6 +34,8 @@ export class EmployeesComponent implements OnInit {
       console.log('Employees:', employees);
       // Use the retrieved data as needed in your component
       this.filteredData = employees;
+      console.log('Total employees',employees.length);
+      
       this.empCollectiondata = employees;
     } catch (error) {
       // Handle the error appropriately
