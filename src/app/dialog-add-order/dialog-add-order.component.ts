@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrdersService } from '../shared/orders.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class DialogAddOrderComponent implements OnInit {
   title = 'Add Test';
 
 
-  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<DialogAddOrderComponent>, private orderService: OrdersService, @Inject(MAT_DIALOG_DATA) public data: any,) { }
+  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<DialogAddOrderComponent>, private orderService: OrdersService, @Inject(MAT_DIALOG_DATA) public data: any,private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if (this.data !== null && this.data !== '') {
@@ -42,6 +43,10 @@ export class DialogAddOrderComponent implements OnInit {
           (res: any) => {
             this.getOrders();
             this.orderForm.reset();
+            this.snackBar.open('Order updated succesfully', 'Close', {
+              duration: 3000, // Display the alert for 3 seconds
+              panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
+            });
             this.dialogRef.close();
             console.log('data is updated successfully!!');
           }
@@ -55,6 +60,10 @@ export class DialogAddOrderComponent implements OnInit {
           (res: any) => {
             this.getOrders();
             this.orderForm.reset();
+            this.snackBar.open('Order added succesfully', 'Close', {
+              duration: 3000, // Display the alert for 3 seconds
+              panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
+            });
             this.dialogRef.close();
             console.log('data is added successfully!!');
           }
