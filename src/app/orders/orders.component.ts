@@ -67,7 +67,7 @@ export class OrdersComponent implements OnInit {
           item.Name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.Amount.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.Status.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          item.Location.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          item.Country.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
           item.Date.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
       });

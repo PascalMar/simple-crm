@@ -28,7 +28,7 @@ export class DialogAddOrderComponent implements OnInit {
       Name: ['', Validators.required],
       Amount: ['', [Validators.required]],
       Status: ['', Validators.required],      
-      Location: ['', Validators.required],
+      Country: ['', Validators.required],
       Date: ['', Validators.required],
     });
     this.orderForm.patchValue(this.data);
