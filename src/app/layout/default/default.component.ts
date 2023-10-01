@@ -9,8 +9,7 @@ import { EmployService } from 'src/app/shared/employ.service';
   styleUrls: ['./default.component.scss']
 })
 export class DefaultComponent implements OnInit {
-  currentUserName: string = '';
-  activeItem: string = '';
+  currentUserName: string = ''; 
   profiledata: any ;
 
   constructor(private authService: AuthService, private afAuth: AngularFireAuth, private empService: EmployService) { }
@@ -20,9 +19,7 @@ export class DefaultComponent implements OnInit {
   }
 
 
-  handleItemClick(itemName: string) {
-    this.activeItem = itemName;
-  }
+
 
   logout() {
     this.authService.logout();

@@ -15,8 +15,13 @@
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" [(ngModel)]="password">
                         </div>
-                        <button type="button" class="btn btn-primary" (click)="login()">Login</button>
-                        <button (click)="guestLogin()" class="btn btn-primary">Guest Login</button>
+                        <div class="row">
+                            <div class="col-md-6 mt-2">
+                            <button type="button" class="btn btn-primary" (click)="login()">Login</button></div>
+                            <div class="col-md-6 mt-2">
+                            <button (click)="guestLogin()" class="btn btn-primary">Guest
+                                Login</button></div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="/register" style="text-decoration: none;">Need Account ? <span
@@ -27,11 +32,12 @@
                                     Password ? </a>
                             </div>
                         </div>
-                        <div class="row mt-2">
+                        <div class="row mt-2 justify-content-center">
                             <a click="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
                                 <div class="card shadow text-center">
                                     <div class="card-body">
-                                        <img src="../../assets/img/icons/icons8-google-48.png" alt height="24px" width="24px">
+                                        <img src="../../assets/img/icons/icons8-google-48.png" alt height="24px"
+                                            width="24px">
                                         Sign In with
                                         Google
                                     </div>
@@ -41,16 +47,16 @@
                     </form>
                 </div>
             </div>
-           </div>
         </div>
     </div>
+</div>
 
 
 
 
 
 
-    <!-- <div class="container-fluid">
+<!-- <div class="container-fluid">
 
     <div class="row">
         <div class="col">
@@ -104,7 +110,7 @@
         </div>
     </div>
 </div> -->
-    <!-- <div class="card">
+<!-- <div class="card">
     <form class="p-4">
         <div class="form-group">
             <h1>{{ title }}</h1>
@@ -148,7 +154,7 @@
 
     </form>
 </div> -->
-    <!-- 
+<!-- 
 <div class="container-fluid p-4">
     <div class="row mt-5">
         <div class="col"></div>

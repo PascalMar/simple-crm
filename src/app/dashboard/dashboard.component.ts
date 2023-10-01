@@ -93,18 +93,17 @@ export class DashboardComponent implements OnInit {
               },
               value: {
                 show: true,
-                formatter: (w: any) => {
-                  if (this.totalOrders) {
-                    return this.totalOrders + ' orders'
-                  } return 0
+                formatter: (val: any) => {
+                  return val + ' orders';
                 }
               },
               total: {
                 show: true,
                 showAlways: false,
                 formatter: (w: any) => {
-                  return this.totalOrders
-                    + ' orders'
+                  if (this.totalOrders) {
+                    return this.totalOrders + ' orders'
+                  } return 0
                 }
               }
             }
@@ -119,7 +118,7 @@ export class DashboardComponent implements OnInit {
         '#80A473',
         '#DB9B4D',
       ],
-      labels: this.Date,
+      labels: this.groupedDates,
       dataLabels: {
         enabled: false,
       },
@@ -168,7 +167,7 @@ export class DashboardComponent implements OnInit {
         '#80A473',
         '#DB9B4D',
       ],
-      labels: this.Designation,
+      labels: this.groupedDesignations,
       dataLabels: {
         enabled: false,
       },

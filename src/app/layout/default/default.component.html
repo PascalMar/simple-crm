@@ -1,44 +1,36 @@
-<mat-drawer-container class="mat-drawer-container" autosize>
-  <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
+
+ <div class="sidenav">
     <div class="logo-container">
       <img class="logo" src="./assets/img/crm.png">
     </div>
 
     <ul class="menu-items">
-      <li routerLink="/dashboard" [ngClass]="{'active': activeItem === 'Unterpunkt1'}"
-        (click)="handleItemClick('Unterpunkt1')">
+      <li routerLink="/dashboard" routerLinkActive="active-route">
         <mat-icon>fact_check</mat-icon>Dashboard
       </li>
-      <li routerLink="/user" [ngClass]="{'active': activeItem === 'Unterpunkt2'}"
-        (click)="handleItemClick('Unterpunkt2')">
+      <li routerLink="/user" routerLinkActive="active-route">
         <mat-icon>perm_identity</mat-icon>Customer
       </li>
-      <li routerLink="/employees" [ngClass]="{'active': activeItem === 'Unterpunkt3'}"
-        (click)="handleItemClick('Unterpunkt3')">
+      <li routerLink="/employees" routerLinkActive="active-route">
         <mat-icon>perm_identity</mat-icon>Employees
       </li>
-      <li routerLink="/orders" [ngClass]="{'active': activeItem === 'Unterpunkt4'}"
-        (click)="handleItemClick('Unterpunkt4')">
+      <li routerLink="/orders" routerLinkActive="active-route">
         <mat-icon>perm_identity</mat-icon>Orders
       </li>
-      <li routerLink="/calendar" [ngClass]="{'active': activeItem === 'Unterpunkt5'}"
-        (click)="handleItemClick('Unterpunkt5')">
+      <li routerLink="/calendar" routerLinkActive="active-route">
         <mat-icon><span class="material-symbols-outlined">
             calendar_month
           </span></mat-icon>Calendar
       </li>
-
-
     </ul>
-  </mat-drawer>
+  </div>
 
-  <div class="example-sidenav-content">
+  <div class="sidenav-space">
     <mat-toolbar color="primary">
       <mat-toolbar-row>
-        <mat-icon class="menu-icon" mat-button (click)="drawer.toggle()">menu</mat-icon>
         <span>Simple CRM
         </span>
-        <div style="position: relative;left: 50rem;">
+        <div class="user">
           <button mat-button [matMenuTriggerFor]="menu">Hello {{profiledata?.Name}}!
             <img [src]=profiledata?.imageUrl />
           </button>
@@ -59,4 +51,5 @@
     </div>
 
   </div>
-</mat-drawer-container>
+
+
