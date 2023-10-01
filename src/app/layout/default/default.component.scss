@@ -2,9 +2,15 @@
     height: 100vh;
 }
 
+.legal-notice {
+    cursor: pointer;
+}
+
 .menu-icon {
     cursor: pointer;
 }
+
+
 
 .sidenav {
     position: fixed;
@@ -100,10 +106,11 @@ mat-toolbar-row {
         mat-icon {
             margin-right: 16px;
 
+
             @media(max-width:800px) {
                 margin-right: 0px;
                 margin-bottom: 5px;
-            }
+            }           
         }
 
         &.active-route,

@@ -1,60 +1,58 @@
-
- <div class="sidenav">
-    <div class="logo-container">
-      <img class="logo" src="./assets/img/crm.png">
-    </div>
-
-    <ul class="menu-items">
-      <li routerLink="/dashboard" routerLinkActive="active-route">
-        <mat-icon>fact_check</mat-icon>Dashboard
-      </li>
-      <li routerLink="/user" routerLinkActive="active-route">
-        <mat-icon>perm_identity</mat-icon>Customer
-      </li>
-      <li routerLink="/employees" routerLinkActive="active-route">
-        <mat-icon>perm_identity</mat-icon>Employees
-      </li>
-      <li routerLink="/orders" routerLinkActive="active-route">
-        <mat-icon>perm_identity</mat-icon>Orders
-      </li>
-      <li routerLink="/calendar" routerLinkActive="active-route">
-        <mat-icon><span class="material-symbols-outlined">
-            calendar_month
-          </span></mat-icon>Calendar
-      </li>
-      <li routerLink="/legal-notice" routerLinkActive="active-route">
-        <mat-icon><span class="material-symbols-outlined">
-            calendar_month
-          </span></mat-icon>Legalnotice
-      </li>
-    </ul>
+<div class="sidenav">
+  <div class="logo-container">
+    <img class="logo" src="./assets/img/crm.png">
   </div>
 
-  <div class="sidenav-space">
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <span>Simple CRM
-        </span>
-        <div class="user">
-          <button mat-button [matMenuTriggerFor]="menu">Hello {{profiledata?.Name}}!
-            <img [src]=profiledata?.imageUrl />
+  <ul class="menu-items">
+    <li routerLink="/dashboard" routerLinkActive="active-route">
+      <mat-icon>fact_check</mat-icon>Dashboard
+    </li>
+    <li routerLink="/user" routerLinkActive="active-route">
+      <mat-icon>perm_identity</mat-icon>Customer
+    </li>
+    <li routerLink="/employees" routerLinkActive="active-route">
+      <mat-icon>perm_identity</mat-icon>Employees
+    </li>
+    <li routerLink="/orders" routerLinkActive="active-route">
+      <mat-icon>perm_identity</mat-icon>Orders
+    </li>
+    <li routerLink="/calendar" routerLinkActive="active-route">
+      <mat-icon><span class="material-symbols-outlined">
+          calendar_month
+        </span></mat-icon>Calendar
+    </li>
+  </ul>
+</div>
+
+<div class="sidenav-space">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Simple CRM
+      </span>
+      <div class="legal-notice">
+        <mat-icon routerLink="/legal-notice"><span class="material-symbols-outlined">
+            policy
+          </span></mat-icon>
+      </div>
+
+      <div class="user">
+        <button mat-button [matMenuTriggerFor]="menu">Hello {{profiledata?.Name}}!
+          <img [src]=profiledata?.imageUrl />
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/profile-setting">
+            <mat-icon>perm_identity</mat-icon>Profile Setting
           </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/profile-setting">
-              <mat-icon>perm_identity</mat-icon>Profile Setting
-            </button>
-            <button mat-menu-item (click)="logout()">
-              <mat-icon>perm_identity</mat-icon> Logout
-            </button>
-          </mat-menu>
-        </div>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>perm_identity</mat-icon> Logout
+          </button>
+        </mat-menu>
+      </div>
 
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <div class="router-container">
-      <router-outlet></router-outlet>
-    </div>
-
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="router-container">
+    <router-outlet></router-outlet>
   </div>
 
-
+</div>
