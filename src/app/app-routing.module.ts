@@ -12,6 +12,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: 'profile-setting', component: UserProfileComponent},
       { path: 'orders', component: OrdersComponent},
       { path: 'calendar', component: CalendarComponent},
+      { path: 'legal-notice', component: LegalNoticeComponent},
      
 
     ]

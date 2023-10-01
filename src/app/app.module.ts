@@ -47,6 +47,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NgxApexchartsModule } from 'ngx-apexcharts';
+import { DataService } from './shared/data.service';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 
 
@@ -68,6 +70,7 @@ import { NgxApexchartsModule } from 'ngx-apexcharts';
     OrdersComponent,
     DialogAddOrderComponent,
     CalendarComponent,
+    LegalNoticeComponent,
   ],
   imports: [
     BrowserModule,
