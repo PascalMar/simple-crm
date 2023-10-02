@@ -9,8 +9,8 @@ import { EmployService } from 'src/app/shared/employ.service';
   styleUrls: ['./default.component.scss']
 })
 export class DefaultComponent implements OnInit {
-  currentUserName: string = ''; 
-  profiledata: any ;
+  currentUserName: string = '';
+  profiledata: any;
 
   constructor(private authService: AuthService, private afAuth: AngularFireAuth, private empService: EmployService) { }
 
@@ -28,13 +28,10 @@ export class DefaultComponent implements OnInit {
   async getUserById(uid: string) {
     try {
       this.profiledata = await this.empService.getUserById(uid);
-      if (this.profiledata) {
-        // Data exists, you can use it here
-        console.log('Employee data:', this.profiledata);
-
+      if (!this.profiledata) {
+        this.currentUserName = 'Guest';
       } else {
-        // Handle the case where the document does not exist
-        console.log('Employee not found');
+        this.currentUserName = this.profiledata.Name;
       }
     } catch (error) {
       // Handle any errors that occurred during the fetch
@@ -44,13 +41,11 @@ export class DefaultComponent implements OnInit {
 
   getCurrentUserUid() {
     this.afAuth.authState.subscribe((user) => {
-      if (user) {   
+      if (user) {
         this.getUserById(user.uid);
-        console.log('Current User UID: ', user.uid);
-
       } else {
-        // User is not logged in
-        console.log('User is not logged in');
+        this.currentUserName = 'Guest';
+        
       }
     });
   }

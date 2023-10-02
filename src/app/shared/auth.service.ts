@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AuthService {
 
+  currentUserName: string = '';
+
   constructor(private fireauth: AngularFireAuth, private router: Router, private firestore: AngularFirestore, private snackBar: MatSnackBar) { }
 
   guestLogin() {
