@@ -3,7 +3,7 @@
     <div class="row chart-container">
       <div class="col-md-6 mb-4">
         <div class="card">
-          <span>Total customers</span>
+          <h2>Total customers</h2>
           <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
           [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
           [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis"
@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-6 mb-4">
         <div class="card">
-          <span>Total employees</span>
+          <h2>Total employees</h2>
           <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
           [series]="chartOptions1.series" [chart]="chartOptions1.chart"
           [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-6 mb-4">
         <div class="card">
-          <span>Orders by country</span>
+          <h2>Orders by country</h2>
           <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
           [series]="chartOptions2.series" [chart]="chartOptions2.chart"
           [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
@@ -35,7 +35,7 @@
       </div>
       <div class="col-md-6 mb-4">
         <div class="card">
-          <span>Customers by country</span>
+          <h2>Customers by country</h2>
           <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
           [series]="chartOptions3.series" [chart]="chartOptions3.chart"
           [dataLabels]="chartOptions3.dataLabels" [plotOptions]="chartOptions3.plotOptions"

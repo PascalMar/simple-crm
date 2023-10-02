@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions = {
       series: this.datescounts,
       chart: {
-        height: 400,
+        height: 360,
         type: 'donut',
       },
       plotOptions: {
@@ -166,7 +166,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions1 = {
       series: this.designationCounts,
       chart: {
-        height: 400,
+        height: 360,
         type: 'donut',
       },
       plotOptions: {
@@ -217,7 +217,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions2 = {
       series: this.countrycounts,
       chart: {
-        height: 400,
+        height: 360,
         type: 'donut',
       },
       plotOptions: {
@@ -266,7 +266,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions3 = {
       series: this.customerscounts,
       chart: {
-        height: 400,
+        height: 360,
         type: 'donut',
       },
       plotOptions: {
