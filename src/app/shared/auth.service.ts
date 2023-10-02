@@ -3,6 +3,7 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private fireauth: AngularFireAuth, private router: Router, private firestore: AngularFirestore,) { }
+  constructor(private fireauth: AngularFireAuth, private router: Router, private firestore: AngularFirestore, private snackBar: MatSnackBar) { }
 
   guestLogin() {
     this.fireauth.signInAnonymously().then((userCredential) => {
@@ -46,20 +47,19 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         if (res.user) {
-          // Access the registered user's UID
           const uid = res.user.uid;
-          console.log(res.user);
-
-          // Create a user document in the 'users' collection
           const userData = {
-            email: email, // You can add more user data here if needed
+            email: email,
           };
           this.firestore
             .collection('users')
-            .doc(uid) // Use the UID as the document ID
+            .doc(uid)
             .set(userData)
             .then(() => {
-              alert('Registration Successful');
+              this.snackBar.open('successful registration', 'Close', {
+                duration: 3000,
+                panelClass: ['success-snackbar'],
+              });
               this.sendEmailForVarification(res.user);
               this.router.navigate(['/login']);
             })

@@ -14,6 +14,9 @@ export class LoginComponent {
   password: string = '';
   title = 'Login';
 
+  screenHeight = window.innerHeight;
+  snackbarHeight = this.screenHeight * 0.1;
+
   constructor(private auth: AuthService, private router: Router, private snackBar: MatSnackBar) { }
 
   guestLogin() {
@@ -25,15 +28,15 @@ export class LoginComponent {
 
     if (this.email == '') {
       this.snackBar.open('Please enter a valid E-Mail', 'Close', {
-        duration: 3000, 
-        panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
+        duration: 3000,
+        panelClass: ['success-snackbar'],
       });
       return;
     }
 
     if (this.password == '') {
       this.snackBar.open('Please enter a valid Password', 'Close', {
-        duration: 3000, 
+        duration: 3000,
         panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
       });
       return;

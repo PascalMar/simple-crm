@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
@@ -11,13 +12,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthGuard {
-  constructor(public AuthService: AuthService, public router: Router) {}
+  constructor(public AuthService: AuthService, public router: Router, private snackBar: MatSnackBar) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | UrlTree | boolean {
     if (this.AuthService.loggedIn() !== true) {
-      window.alert('Access Denied, Login is Required to Access This Page!');
+      this.snackBar.open('Access Denied, Login is Required to Access This Page!', 'Close', {
+        duration: 3000,
+        panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
+      });
       this.router.navigate(['sign-in']);
     }
     return true;

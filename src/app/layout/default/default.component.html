@@ -8,13 +8,13 @@
       <mat-icon>fact_check</mat-icon>Dashboard
     </li>
     <li routerLink="/user" routerLinkActive="active-route">
-      <mat-icon>perm_identity</mat-icon>Customer
+      <mat-icon>person_search</mat-icon>Customer
     </li>
     <li routerLink="/employees" routerLinkActive="active-route">
       <mat-icon>perm_identity</mat-icon>Employees
     </li>
     <li routerLink="/orders" routerLinkActive="active-route">
-      <mat-icon>perm_identity</mat-icon>Orders
+      <mat-icon>assignment</mat-icon>Orders
     </li>
     <li routerLink="/calendar" routerLinkActive="active-route">
       <mat-icon><span class="material-symbols-outlined">
@@ -41,10 +41,12 @@
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink="/profile-setting">
-            <mat-icon>perm_identity</mat-icon>Profile Setting
+            <mat-icon><span class="material-symbols-outlined">
+                settings
+              </span></mat-icon>Profile Setting
           </button>
           <button mat-menu-item (click)="logout()">
-            <mat-icon>perm_identity</mat-icon> Logout
+            <mat-icon>logout</mat-icon> Logout
           </button>
         </mat-menu>
       </div>
