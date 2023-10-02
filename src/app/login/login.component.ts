@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
-import { signInAnonymously } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-login',
@@ -11,24 +12,30 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  title = 'Login' ; 
+  title = 'Login';
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private snackBar: MatSnackBar) { }
 
   guestLogin() {
-    this.auth.guestLogin();    
-    
+    this.auth.guestLogin();
+
   }
 
   login() {
 
     if (this.email == '') {
-      alert('Please enter email');
+      this.snackBar.open('Please enter a valid E-Mail', 'Close', {
+        duration: 3000, 
+        panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
+      });
       return;
     }
 
     if (this.password == '') {
-      alert('Please enter password');
+      this.snackBar.open('Please enter a valid Password', 'Close', {
+        duration: 3000, 
+        panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
+      });
       return;
     }
 

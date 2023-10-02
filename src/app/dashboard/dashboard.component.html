@@ -1,84 +1,47 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="content-wrapper">
-        <!-- Content -->
-
-        <div class="container-xxl flex-grow-1 container-p-y">
-          <div class="row gy-4">
 
 
-            <!-- charts -->
-
-            <!-- pie chart -->
-            <div class="col-md-12 col-lg-6 mb-4" *ngIf="datescounts">
-              <div class="card">
-                <div class="card-header">
-                  Total orders in 2023
-                  <div class="card-body">
-                    <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
-                      [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-                      [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis"
-                      [fill]="chartOptions.fill" [title]="chartOptions.title" [labels]="chartOptions.labels"
-                      [legend]="chartOptions.legend" [colors]="chartOptions.colors"></apx-chart>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- pie chart -->
-            <div class="col-md-12 col-lg-6 mb-4" *ngIf="designationCounts ">
-              <div class="card">
-                <div class="card-header">
-                  Total employees
-                  <div class="card-body">
-                    <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
-                      [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                      [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
-                      [yaxis]="chartOptions1.yaxis" [xaxis]="chartOptions1.xaxis" [fill]="chartOptions1.fill"
-                      [title]="chartOptions1.title" [labels]="chartOptions1.labels" [legend]="chartOptions1.legend"
-                      [colors]="chartOptions1.colors"></apx-chart>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- pie chart -->
-            <div class="col-md-12 col-lg-6 mb-4" *ngIf="countrycounts ">
-              <div class="card">
-                <div class="card-header">
-                  Orders by Country
-                  <div class="card-body">
-                    <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
-                      [series]="chartOptions2.series" [chart]="chartOptions2.chart"
-                      [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
-                      [yaxis]="chartOptions2.yaxis" [xaxis]="chartOptions2.xaxis" [fill]="chartOptions2.fill"
-                      [title]="chartOptions2.title" [labels]="chartOptions2.labels" [legend]="chartOptions2.legend"
-                      [colors]="chartOptions2.colors"></apx-chart>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-             <!-- pie chart -->
-             <div class="col-md-12 col-lg-6 mb-4" *ngIf="customerscounts ">
-              <div class="card">
-                <div class="card-header">
-                  Customers by Country
-                  <div class="card-body">
-                    <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
-                      [series]="chartOptions3.series" [chart]="chartOptions3.chart"
-                      [dataLabels]="chartOptions3.dataLabels" [plotOptions]="chartOptions3.plotOptions"
-                      [yaxis]="chartOptions3.yaxis" [xaxis]="chartOptions3.xaxis" [fill]="chartOptions3.fill"
-                      [title]="chartOptions3.title" [labels]="chartOptions3.labels" [legend]="chartOptions3.legend"
-                      [colors]="chartOptions3.colors"></apx-chart>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="content-backdrop fade"></div>
-          </div>
+    <div class="row chart-container">
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <span>Total customers</span>
+          <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
+          [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+          [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis"
+          [fill]="chartOptions.fill" [title]="chartOptions.title" [labels]="chartOptions.labels"
+          [legend]="chartOptions.legend" [colors]="chartOptions.colors"></apx-chart>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <span>Total employees</span>
+          <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
+          [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+          [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
+          [yaxis]="chartOptions1.yaxis" [xaxis]="chartOptions1.xaxis" [fill]="chartOptions1.fill"
+          [title]="chartOptions1.title" [labels]="chartOptions1.labels" [legend]="chartOptions1.legend"
+          [colors]="chartOptions1.colors"></apx-chart>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <span>Orders by country</span>
+          <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
+          [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+          [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
+          [yaxis]="chartOptions2.yaxis" [xaxis]="chartOptions2.xaxis" [fill]="chartOptions2.fill"
+          [title]="chartOptions2.title" [labels]="chartOptions2.labels" [legend]="chartOptions2.legend"
+          [colors]="chartOptions2.colors"></apx-chart>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <span>Customers by country</span>
+          <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
+          [series]="chartOptions3.series" [chart]="chartOptions3.chart"
+          [dataLabels]="chartOptions3.dataLabels" [plotOptions]="chartOptions3.plotOptions"
+          [yaxis]="chartOptions3.yaxis" [xaxis]="chartOptions3.xaxis" [fill]="chartOptions3.fill"
+          [title]="chartOptions3.title" [labels]="chartOptions3.labels" [legend]="chartOptions3.legend"
+          [colors]="chartOptions3.colors"></apx-chart>
         </div>
       </div>
     </div>

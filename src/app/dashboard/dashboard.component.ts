@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions = {
       series: this.datescounts,
       chart: {
-        height: 350,
+        height: 400,
         type: 'donut',
       },
       plotOptions: {
@@ -166,7 +166,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions1 = {
       series: this.designationCounts,
       chart: {
-        height: 350,
+        height: 400,
         type: 'donut',
       },
       plotOptions: {
@@ -204,6 +204,7 @@ export class DashboardComponent implements OnInit {
         '#80A473',
         '#DB9B4D',
       ],
+      
       labels: this.groupedDesignations,
       dataLabels: {
         enabled: false,
@@ -216,7 +217,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions2 = {
       series: this.countrycounts,
       chart: {
-        height: 350,
+        height: 400,
         type: 'donut',
       },
       plotOptions: {
@@ -265,7 +266,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions3 = {
       series: this.customerscounts,
       chart: {
-        height: 350,
+        height: 400,
         type: 'donut',
       },
       plotOptions: {

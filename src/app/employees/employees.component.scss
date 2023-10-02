@@ -1,7 +1,13 @@
 .add-user-btn {
     position: absolute;
     right: 56px;
-    top: 12rem;
+    top: 5rem;
+
+    @media(max-width: 400px ) {
+      height: 32px;
+      width: 32px;
+      top: -2.5rem;
+    }
 }
 
 .table-responsive::-webkit-scrollbar {

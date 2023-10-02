@@ -91,13 +91,16 @@
                   (ngModelChange)="event.color!.secondaryText = $event" (change)="refresh.next()" />
               </td>
               <td>
-                <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
-                  (ngModelChange)="refresh.next()" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
-                  placeholder="Not set" />
-              </td>
+                <input class="form-control" type="text" 
+                    [(ngModel)]="event.start"
+                    (ngModelChange)="refresh.next()" 
+                    placeholder="Not set"
+                    altFormat="F j, Y"
+                    value="{{ formatDate(event.start) }}" />
+            </td>
               <td>
                 <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
-                  (ngModelChange)="refresh.next()" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
+                  (ngModelChange)="refresh.next()" dateFormat="Y-m-d" altFormat="F j, Y H:i"
                   placeholder="Not set" />
               </td>
               <td>

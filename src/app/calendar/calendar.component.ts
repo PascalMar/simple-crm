@@ -13,6 +13,7 @@ import {
   isSameDay,
   isSameMonth,
   addHours,
+  format
 } from 'date-fns';
 import { Subject } from 'rxjs';
 import {
@@ -54,7 +55,7 @@ export class CalendarComponent {
 
   // modalData: {
   //   action: string;
-  //   event: CalendarEvent;
+  //   .start: CalendarEvent;
   // };
 
   actions: CalendarEventAction[] = [
@@ -76,6 +77,8 @@ export class CalendarComponent {
   ];
 
   refresh = new Subject<void>();
+
+  
 
   events: CalendarEvent[] = [
     {
@@ -106,6 +109,10 @@ export class CalendarComponent {
     },
     
   ];
+
+  formatDate(date: Date): string {
+    return format(date, 'MM/dd/yyyy');
+  }
 
   activeDayIsOpen: boolean = true;
 

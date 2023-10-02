@@ -1,117 +1,20 @@
-<!-- <div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-4">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <h4 class="text-dark text-muted">Register</h4>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" [(ngModel)]="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" [(ngModel)]="password">
-                        </div>
-                        <button type="button" class="btn btn-info" (click)="register()">Register</button>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="/login" style="text-decoration: none;">Have an account ? <span
-                                        class="text-danger">Login</span></a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col"></div>
-    </div>
-</div> -->
+<div class="log-in">
+    <div class="form-class form-width-mobile">
+        <form class="log-in-form">
+            <img class="arrow-left" [routerLink]="''" src="/assets/img/sign-up-arrow.png">
+            <span class="log-in-headline">Register</span>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <h4 class="text-dark text-muted">Register</h4>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" [(ngModel)]="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" [(ngModel)]="password">
-                        </div>
-                        <button type="button" class="btn btn-primary" (click)="register()">Login</button>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="/login" style="text-decoration: none;">Have an account ? <span
-                                        class="text-danger">Login</span></a>
-                            </div>
-                        </div>
-                    </form>
+            <input type="email" class="email-input" name="email" [(ngModel)]="email" placeholder="Email" type="email"
+                required>
+
+            <input type="password" class="password-input" name="password" [(ngModel)]="password" placeholder="Password"
+                type="password" required>
+            <div class="mobile-login-buttons">
+                <div class="login-btns">
+                    <button class="button" (click)="register()">Register</button>
                 </div>
             </div>
-        </div>
+
+        </form>
     </div>
 </div>
-
-
-
-
-
-<!-- 
-
-<div class="container-fluid p-4">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-4">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <h4 class="text-dark text-muted">Login</h4>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" [(ngModel)]="email">
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" [(ngModel)]="password">
-                        </div>
-                        <button type="button" class="btn btn-secondary" (click)="login()">Login</button>
-                        <button type="button" class="btn btn-secondary" (click)="guestLogin()">Guest Login</button>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="/register" style="text-decoration: none;">Need Account ? <span
-                                        class="text-danger">Register</span></a>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <a click="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
-                                <div class="card shadow text-center">
-                                    <div class="card-body">
-                                        <img src="../../../assets/img/icons/icons8-google-48.png" alt height="24px"
-                                            width="24px">
-                                        Sign In with
-                                        Google
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col"></div>
-    </div>
-</div> --> 
