@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from 'src/app/shared/auth.service';
+import { DataService } from 'src/app/shared/data.service';
 import { EmployService } from 'src/app/shared/employ.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-default',
@@ -10,11 +13,18 @@ import { EmployService } from 'src/app/shared/employ.service';
 })
 export class DefaultComponent implements OnInit {
   currentUserName: string = '';
+  currentUserImageUrl: string = '';
   profiledata: any;
 
-  constructor(private authService: AuthService, private afAuth: AngularFireAuth, private empService: EmployService) { }
+  constructor(private DataService: DataService, private authService: AuthService, private afAuth: AngularFireAuth, private empService: EmployService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.DataService.currentUserName$.subscribe(name => {
+      this.currentUserName = name;
+    });
+    this.DataService.currentUserImageUrl$.subscribe(url => {
+      this.currentUserImageUrl = url;
+    });
     this.getCurrentUserUid();
   }
 
@@ -23,6 +33,10 @@ export class DefaultComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.snackBar.open('logged out successfully', 'Close', {
+      duration: 3000, // Display the alert for 3 seconds
+      panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
+    });
   }
 
   async getUserById(uid: string) {
@@ -45,7 +59,7 @@ export class DefaultComponent implements OnInit {
         this.getUserById(user.uid);
       } else {
         this.currentUserName = 'Guest';
-        
+
       }
     });
   }

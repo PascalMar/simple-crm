@@ -39,7 +39,11 @@ export class AuthService {
         this.router.navigate(['/verify-email']);
       }
     }, (err: { message: any; }) => {
-      alert(err.message);
+      this.snackBar.open(err.message, 'Close', {
+        duration: 3000,
+        panelClass: ['success-snackbar'],
+      });
+
       this.router.navigate(['/login']);
     })
   }
@@ -74,7 +78,10 @@ export class AuthService {
         }
       })
       .catch((err) => {
-        alert(err.message);
+        this.snackBar.open(err.message, 'Close', {
+          duration: 5000,
+          panelClass: ['success-snackbar'],
+        });
         this.router.navigate(['/register']);
       });
   }
@@ -86,20 +93,13 @@ export class AuthService {
     user.sendEmailVerification().then((res: any) => {
       this.router.navigate(['/varify-email']);
     }, (err: any) => {
-      alert('Something went wrong. Not able to send mail to your email.')
+      this.snackBar.open('Something went wrong. Not able to send mail to your email', 'Close', {
+        duration: 5000,
+        panelClass: ['success-snackbar'],
+      });
     })
   }
 
-  googleSignIn() {
-    return this.fireauth.signInWithPopup(new GoogleAuthProvider).then(res => {
-
-      this.router.navigate(['/dashboard']);
-      localStorage.setItem('token', JSON.stringify(res.user?.uid));
-
-    }, (err: { message: any; }) => {
-      alert(err.message);
-    })
-  }
 
   loggedIn() {
     return !!localStorage.getItem('token')
@@ -110,7 +110,10 @@ export class AuthService {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
     }, (err: { message: any; }) => {
-      alert(err.message);
+      this.snackBar.open(err.message, 'Close', {
+        duration: 5000,
+        panelClass: ['success-snackbar'],
+      });
     })
   }
 

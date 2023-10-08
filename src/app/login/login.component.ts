@@ -48,7 +48,5 @@ export class LoginComponent {
     this.password = '';
   }
 
-  signInWithGoogle() {
-    this.auth.googleSignIn();
-  }
+
 }

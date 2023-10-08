@@ -27,10 +27,10 @@ export class DialogAddUserComponent implements OnInit {
       FirstName: ['', Validators.required],
       LastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],      
-      Street: [''],
-      ZipCode: [''],
-      City: [''],
-      Country: [''],
+      Street: ['', [Validators.required]],
+      ZipCode: ['', [Validators.required]],
+      City: ['', [Validators.required]],
+      Country: ['', [Validators.required]],
     });
     this.customerForm.patchValue(this.data);
   }

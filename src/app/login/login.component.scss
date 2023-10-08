@@ -45,12 +45,15 @@
 
 
     .form-class {
-        height: 420px;
+        height: 600px;
         width: 500px;
         border-radius: 20px;
         box-shadow: -2px 0px 6px 0px rgba(0, 0, 0, 0.2);
         position: relative;
         background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .log-in-form {
             display: flex;
@@ -158,7 +161,7 @@
 
     /*** Login Page ***/
     .form-class {
-        height: 420px !important;
+        height: 600px !important;
     }
 
     .form-width-mobile {

@@ -29,10 +29,10 @@ export class DialogAddEmployeesComponent implements OnInit {
       Name: ['', Validators.required],
       Designation: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      Country: [''],
-      Hiredate: [''],
-      Reportto: [''],
-      City: [''],
+      Country: ['', [Validators.required]],
+      Hiredate: ['', [Validators.required]],
+      Reportto: ['', [Validators.required]],
+      City: ['', [Validators.required]],
     });
     this.employeesForm.patchValue(this.data);
   }

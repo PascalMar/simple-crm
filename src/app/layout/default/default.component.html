@@ -37,7 +37,7 @@
 
       <div class="user">
         <button mat-button [matMenuTriggerFor]="menu">Hello {{currentUserName}}!
-          <img [src]=profiledata?.imageUrl />
+          <img [src]="currentUserImageUrl" />
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink="/profile-setting">

@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,7 +21,9 @@ export class UserProfileComponent implements OnInit {
   selectedImageURL: any;
 
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private DataService: DataService,
+    private fb: FormBuilder,
     private storage: AngularFireStorage,
     private afAuth: AngularFireAuth,
     private empService: EmployService,
@@ -110,6 +113,9 @@ export class UserProfileComponent implements OnInit {
                 duration: 3000, // Display the alert for 3 seconds
                 panelClass: ['success-snackbar'], // Use custom CSS class for styling (optional)
               });
+              this.DataService.updateUserName(profiledata.Name);
+              this.DataService.updateUserImageUrl(profiledata.imageUrl);
+              // debugger;
             }
           });
         })
