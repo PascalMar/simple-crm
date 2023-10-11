@@ -84,6 +84,7 @@ export class DashboardComponent implements OnInit {
   public chartOptions1: any;
   public chartOptions2: any;
   public chartOptions3: any;
+  public chartOptions4: any;
   public chartSeries: any;
 
   totalEmployees: any;
@@ -103,7 +104,6 @@ export class DashboardComponent implements OnInit {
   groupedOrdersByCountry: any = [];
   groupedCountrys: any = [];
   countrycounts: any = [];
-
 
   totalCustomersByCountry: any = [];
   customerCountry: any = [];
@@ -312,6 +312,44 @@ export class DashboardComponent implements OnInit {
         // show: false
       },
     };
+
+    this.chartOptions4 = {
+      series: [
+        {
+          name: "Desktops",
+          data: this.datescounts
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: "straight"
+      },
+      title: {
+        
+        align: "left"
+      },
+      grid: {
+        row: {
+          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5
+        }
+      },
+      xaxis: {
+        categories: this.groupedDates       
+      }
+    };
+  
+
+
   }
 
   constructor(private empService: EmployService, private orderService: OrdersService, private customerService: CustomerService) {

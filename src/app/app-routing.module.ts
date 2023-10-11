@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
+import { DatabaseSetupComponent } from './database-setup/database-setup.component';
 
 
 
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: 'orders', component: OrdersComponent},
       { path: 'calendar', component: CalendarComponent},
       { path: 'legal-notice', component: LegalNoticeComponent},
+      { path: 'database-setup', component: DatabaseSetupComponent},
      
 
     ]

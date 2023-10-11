@@ -49,6 +49,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { NgxApexchartsModule } from 'ngx-apexcharts';
 import { DataService } from './shared/data.service';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
+import { DatabaseSetupComponent } from './database-setup/database-setup.component';
 
 
 
@@ -71,6 +72,7 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
     DialogAddOrderComponent,
     CalendarComponent,
     LegalNoticeComponent,
+    DatabaseSetupComponent,
   ],
   imports: [
     BrowserModule,

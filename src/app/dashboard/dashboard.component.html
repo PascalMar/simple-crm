@@ -1,14 +1,25 @@
 
 
     <div class="row chart-container">
-      <div class="col-md-6 mb-4">
+      <!-- <div class="col-md-6 mb-4">
         <div class="card">
-          <h2>Total customers</h2>
+          <h2>Total orders</h2>
           <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
           [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
           [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis"
           [fill]="chartOptions.fill" [title]="chartOptions.title" [labels]="chartOptions.labels"
           [legend]="chartOptions.legend" [colors]="chartOptions.colors"></apx-chart>
+        </div>
+      </div> -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <h2>Total orders</h2>
+          <apx-chart *ngIf="chartOptions && chartOptions.series" [series]="chartOptions.series"
+          [series]="chartOptions4.series" [chart]="chartOptions4.chart"
+          [dataLabels]="chartOptions4.dataLabels" [plotOptions]="chartOptions4.plotOptions"
+          [yaxis]="chartOptions4.yaxis" [xaxis]="chartOptions4.xaxis" [fill]="chartOptions4.fill"
+          [title]="chartOptions4.title" [labels]="chartOptions4.labels" [legend]="chartOptions4.legend"
+          [colors]="chartOptions4.colors"></apx-chart>
         </div>
       </div>
       <div class="col-md-6 mb-4">
@@ -44,4 +55,5 @@
           [colors]="chartOptions3.colors"></apx-chart>
         </div>
       </div>
+      
     </div>
