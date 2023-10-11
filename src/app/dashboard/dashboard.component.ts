@@ -316,7 +316,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions4 = {
       series: [
         {
-          name: "Desktops",
+          name: "Orders",
           data: this.datescounts
         }
       ],
@@ -344,7 +344,7 @@ export class DashboardComponent implements OnInit {
         }
       },
       xaxis: {
-        categories: this.groupedDates       
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']      
       }
     };
   
